@@ -31,10 +31,11 @@
                 <version>3.5.37</version>
 
                 <configuration>
+                    <registry>gcr.io</registry>
                     <verbose>true</verbose>
                     <images>
                         <image>
-                            <name>gcr.io/parkin-198217/parkin</name>
+                            <name>parkin-198217/parkin</name>
                         </image>
                     </images>
                 </configuration>
