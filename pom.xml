@@ -31,13 +31,19 @@
                 <version>3.5.37</version>
 
                 <configuration>
-                    <registry>gcr.io</registry>
+                    <registry>registry.hub.docker.io</registry>
                     <verbose>true</verbose>
                     <images>
                         <image>
-                            <name>parkin-198217/parkin</name>
+                            <name>jantoni1/parkin</name>
                         </image>
                     </images>
+                    <authConfig>
+                        <push>
+                            <username>jantoni1</username>
+                            <password>ELKA2137</password>
+                        </push>
+                    </authConfig>
                 </configuration>
 
                 <executions>
