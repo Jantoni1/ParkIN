@@ -30,23 +30,26 @@
                 <artifactId>fabric8-maven-plugin</artifactId>
                 <version>3.5.37</version>
 
+                <configuration>
+                    <verbose>true</verbose>
+                    <images>
+                        <image>
+                            <name>gcr.io/parkin-198217/parkin</name>
+                        </image>
+                    </images>
+                </configuration>
+
                 <executions>
                     <execution>
                         <goals>
                             <goal>resource</goal>
                             <goal>build</goal>
+                            <goal>push</goal>
                             <goal>deploy</goal>
                         </goals>
                     </execution>
                 </executions>
-
-                <!--<configuration>-->
-                    <!--<images>-->
-                        <!--<image>-->
-                            <!--<name>{image.user}/{image.name}:{image.tag}</name>-->
-                        <!--</image>-->
-                    <!--</images>-->
-                <!--</configuration>-->
+                
             </plugin>
         </plugins>
     </build>
