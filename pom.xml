@@ -3,7 +3,7 @@
 
     <groupId>jantoni1</groupId>
     <artifactId>parkin</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <packaging>jar</packaging>
 
     <parent>
@@ -34,14 +34,12 @@
                 <version>3.5.37</version>
 
                 <configuration>
-
-                        <registry>registry.hub.docker.com</registry>
+                     <registry>registry.hub.docker.com</registry>
 
                         <authConfig>
                             <username>jantoni1</username>
                             <password>ELKA2137</password>
                         </authConfig>
-                    
                 </configuration>
 
                 <executions>
