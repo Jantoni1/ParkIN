@@ -45,10 +45,7 @@
                 <executions>
                     <execution>
                         <goals>
-                            <goal>resource</goal>
-                            <goal>build</goal>
-                            <goal>push</goal>
-                            <goal>deploy</goal>
+                            <goal>run</goal>
                         </goals>
                     </execution>
                 </executions>
