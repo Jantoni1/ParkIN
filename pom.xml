@@ -3,7 +3,7 @@
 
     <groupId>jantoni1</groupId>
     <artifactId>parkin</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
 
     <parent>
@@ -31,19 +31,18 @@
                 <version>3.5.37</version>
 
                 <configuration>
-                    <registry>docker.io</registry>
+                    <registry>registry.hub.docker.com/jantoni1</registry>
+                    <authConfig>
+                        <username>jantoni1</username>
+                        <password>ELKA2137</password>
+                    </authConfig>
                     <verbose>true</verbose>
                     <images>
                         <image>
-                            <name>jantoni1/parkin</name>
+                            <name>parkin</name>
                         </image>
                     </images>
-                    <authConfig>
-                        <push>
-                            <username>jantoni1</username>
-                            <password>ELKA2137</password>
-                        </push>
-                    </authConfig>
+
                 </configuration>
 
                 <executions>
