@@ -34,20 +34,14 @@
                 <version>3.5.37</version>
 
                 <configuration>
-                    <profile>{image.name}</profile>
 
-                        <registry>registry.hub.docker.com/jantoni1</registry>
+                        <registry>registry.hub.docker.com</registry>
 
                         <authConfig>
                             <username>jantoni1</username>
                             <password>ELKA2137</password>
                         </authConfig>
-
-                        <images>
-                            <image>
-                                <name>{image.name}:{image.tag}</name>
-                            </image>
-                        </images>
+                    
                 </configuration>
 
                 <executions>
