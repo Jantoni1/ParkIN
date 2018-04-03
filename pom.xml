@@ -46,11 +46,10 @@
                     <execution>
                         <goals>
 
-                            <goal>watch</goal>
-                            <!--<goal>resource</goal>-->
-                            <!--<goal>build</goal>-->
-                            <!--<goal>push</goal>-->
-                            <!--<goal>apply</goal>-->
+                            <goal>resource</goal>
+                            <goal>build</goal>
+                            <goal>push</goal>
+                            <goal>apply</goal>
 
                         </goals>
                     </execution>
