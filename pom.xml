@@ -31,7 +31,7 @@
                 <version>3.5.37</version>
 
                 <configuration>
-                    <registry>registry.hub.docker.io</registry>
+                    <registry>registry.hub.docker.com</registry>
                     <verbose>true</verbose>
                     <images>
                         <image>
