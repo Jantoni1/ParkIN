@@ -11,4 +11,9 @@ public class HelloWorldController {
     {
         return "Hello world! ;) Configuration in process";
     }
+    @RequestMapping("/test")
+    public String test()
+    {
+        return "Testing mapping!";
+    }
 }
