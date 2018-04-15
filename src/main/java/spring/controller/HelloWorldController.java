@@ -9,6 +9,6 @@ public class HelloWorldController {
     @RequestMapping("/")
     public String helloWorld()
     {
-        return "Hello world! ;) Configuration in process";
+        return "Hello world! ;) Pipeline is working!";
     }
 }
