@@ -11,4 +11,9 @@ public class HelloWorldController {
     {
         return "Hello world! ;) Pipeline is working!";
     }
+    @RequestMapping("/test")
+    public String test()
+    {
+        return "Testing mapping!";
+    }
 }
