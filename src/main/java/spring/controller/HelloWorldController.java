@@ -9,11 +9,11 @@ public class HelloWorldController {
     @RequestMapping("/")
     public String helloWorld()
     {
-        return "Hello world! ;) Pipeline is working! Testing code coverage plugin";
+        return "Hello world! ;) Pipeline is working! Testing code coverage plugin!";
     }
     @RequestMapping("/test")
     public String test()
     {
-        return "Testing mapping!";
+        return "Testing mapping! - important";
     }
 }
