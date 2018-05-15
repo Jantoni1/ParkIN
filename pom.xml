@@ -37,12 +37,29 @@
     <profiles>
         <!-- Jenkins by default defines a property BUILD_NUMBER which is used to enable the profile. -->
         <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
             <id>jenkins</id>
             <activation>
-                <property>
-                    <name>env.BUILD_NUMBER</name>
-                </property>
+                <activeByDefault>false</activeByDefault>
             </activation>
+            <!--<activation>-->
+                <!--<property>-->
+                    <!--<name>env.BUILD_NUMBER</name>-->
+                <!--</property>-->
+            <!--</activation>-->
             <build>
                 <plugins>
                     <plugin>
@@ -63,46 +80,43 @@
                             </execution>
                         </executions>
                     </plugin>
+
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>fabric8-maven-plugin</artifactId>
+                        <version>3.5.37</version>
+
+                        <configuration>
+                            <registry>registry.hub.docker.com</registry>
+
+                            <authConfig>
+                                <username>jantoni1</username>
+                                <password>ELKA2137</password>
+                            </authConfig>
+                        </configuration>
+
+                        <executions>
+                            <execution>
+                                <goals>
+
+                                    <goal>resource</goal>
+                                    <goal>build</goal>
+                                    <goal>push</goal>
+                                    <goal>apply</goal>
+
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
     </profiles>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-
-            <plugin>
-                <groupId>io.fabric8</groupId>
-                <artifactId>fabric8-maven-plugin</artifactId>
-                <version>3.5.37</version>
-
-                <configuration>
-                     <registry>registry.hub.docker.com</registry>
-
-                        <authConfig>
-                            <username>jantoni1</username>
-                            <password>ELKA2137</password>
-                        </authConfig>
-                </configuration>
-
-                <executions>
-                    <execution>
-                        <goals>
-
-                            <goal>resource</goal>
-                            <goal>build</goal>
-                            <goal>push</goal>
-                            <goal>apply</goal>
-
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
