@@ -1,22 +1,33 @@
 package spring.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import demo.CarEntry;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+import java.util.ArrayList;
+import java.util.List;
+
+@Controller
 public class HelloWorldController {
+    private List<CarEntry> db = new ArrayList<>();
 
     @RequestMapping("/")
-    public String helloWorld()
-    {
-        return "Hello Sollers! ;) Pipeline is working! Testing code coverage plugin!";
-    }
-    @RequestMapping("/test")
-    public String test()
-    {
-        return "Testing mapping! - important";
+    public String index(Model model) {
+        model.addAttribute("carData", this.db);
+        return "index";
     }
 
-    @RequestMapping("/vcsTest")
-    public String vcsTest() {return "vcs testing - nothing to watch here!";}
+    @ResponseBody @RequestMapping(value = "/PostService", method = RequestMethod.POST)
+    public CarEntry PostService(@RequestBody CarEntry car) {
+        car.setId(db.size() + 1);
+        db.add(car);
+
+        for (CarEntry item : db) {
+            System.out.println(item.getId() + " " + item.getRegistration());
+        }
+        System.out.println();
+
+        return car;
+    }
 }
