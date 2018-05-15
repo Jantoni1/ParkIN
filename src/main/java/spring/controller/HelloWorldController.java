@@ -16,4 +16,7 @@ public class HelloWorldController {
     {
         return "Testing mapping! - important";
     }
+
+    @RequestMapping("/vcsTest")
+    public String vcsTest() {return "vcs testing - nothing to watch here!";}
 }
