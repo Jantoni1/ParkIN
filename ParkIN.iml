@@ -106,5 +106,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.8.9" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.postgresql:postgresql:42.2.2.jre7" level="project" />
+    <orderEntry type="library" name="Maven: com.google.collections:google-collections:1.0-rc2" level="project" />
   </component>
 </module>

@@ -10,18 +10,22 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class TariffController {
 
-    private TariffRepository tariffRepository;
+    private TariffCrudRepository tariffCrudRepository;
 
     @Autowired
-    public TariffController(TariffRepository tariffRepository) {
-        this.tariffRepository = tariffRepository;
+    public TariffController(TariffCrudRepository tariffCrudRepository) {
+        this.tariffCrudRepository = tariffCrudRepository;
     }
 
+    @PostMapping("/tariff")
+    public ResponseEntity<Void> postNewTariff(@RequestBody Tariff tariff) {
+        tariffCrudRepository.save(tariff);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
-    @GetMapping("/tariffs")
+    @GetMapping("/tariff")
     public ResponseEntity<Tariff> getLatestTariff() {
-        Tariff tariff = tariffRepository.findTopByOrderByIdDesc();
+        Tariff tariff = tariffCrudRepository.findTopByOrderByIdDesc();
         return new ResponseEntity<>(tariff, HttpStatus.OK);
     }
-
 }
