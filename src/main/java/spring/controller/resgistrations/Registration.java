@@ -17,11 +17,11 @@ public class Registration {
     private String registrationPlate;
 
     @Convert(converter = LocalDateTimeConverter.class)
-    @Column(name = "ARRIVAL")
+    @Column(name = "ARRIVAL_TIME")
     private LocalDateTime arrival;
 
     @Convert(converter = LocalDateTimeConverter.class)
-    @Column(name = "DEPARTURE")
+    @Column(name = "DEPARTURE_TIME")
     private LocalDateTime departure;
 
     @Column(name = "TARIFF_ID")
