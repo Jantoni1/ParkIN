@@ -46,20 +46,17 @@ public class RegistrationController {
                 ImmutableMap.of("capacity", configuration.getValue(), "occupied", registrations.size())).orElseGet(() -> ImmutableMap.of("error", 1));
     }
 
-
     @PostMapping("/register")
     public ResponseEntity<Void> registerCar(@RequestBody Registration pRegistration) {
         if(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc(pRegistration.getRegistrationPlate())
                 .isPresent()) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
         registrationRepository.save(createRegistration(pRegistration.getRegistrationPlate()));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
-
-    @GetMapping("/checkout")
+    @PostMapping("/checkout")
     public ResponseEntity<ImmutableMap<String, String>>carFeeLookup(@RequestBody Registration pRegistration) {
         Optional<Registration> registrationOptional = registrationRepository
                 .findTopByRegistrationPlateOrderByArrivalDesc(pRegistration.getRegistrationPlate());
@@ -70,16 +67,15 @@ public class RegistrationController {
                 LocalDateTime now = LocalDateTime.now();
                 BigDecimal fee = calculatePrice(registration, tariff.get(), now);
                 return new ResponseEntity<>(ImmutableMap.of("fee", fee.toString()
-                        , "found", "false"
                         , "registrationPlate", registration.getRegistrationPlate()
-                        , "arrivalTime", registration.getArrival().toString()
-                        , "departureTime", now.toString()), HttpStatus.OK);
+                        , "arrival", registration.getArrival().toString()
+                        , "departure", now.toString()), HttpStatus.OK);
             }
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PatchMapping("/unregister")
+    @PostMapping("/unregister")
     public ResponseEntity<Void>  unregisterCar(@RequestBody Registration pRegistration) {
         Optional<Registration> registrationOptional = registrationRepository
                 .findTopByRegistrationPlateOrderByArrivalDesc(pRegistration.getRegistrationPlate());
@@ -89,18 +85,17 @@ public class RegistrationController {
             registrationRepository.save(registration);
             return new ResponseEntity<>(HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     private Registration createRegistration(String registrationPlate) {
         Registration registration = new Registration();
         registration.setRegistrationPlate(registrationPlate);
         registration.setArrival(LocalDateTime.now());
-        registration.setDeparture(null);
+        registration.setDeparture((LocalDateTime)null);
         registration.setTariffId(tariffCrudRepository.findTopByOrderByIdDesc().getId());
         return registration;
     }
-
 
     private BigDecimal calculatePrice(Registration registration, Tariff tariff, LocalDateTime now) {
         long hours = registration.getArrival().until(now, ChronoUnit.HOURS);

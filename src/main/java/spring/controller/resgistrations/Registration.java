@@ -5,6 +5,7 @@ import spring.controller.resgistrations.infrastructure.LocalDateTimeConverter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "REGISTRATIONS")
@@ -53,6 +54,10 @@ public class Registration {
 
     public void setDeparture(LocalDateTime departure) {
         this.departure = departure;
+    }
+
+    public void setDeparture(String departure) {
+        this.departure = LocalDateTime.parse(departure, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
     public Long getTariffId() {
