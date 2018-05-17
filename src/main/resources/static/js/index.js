@@ -72,7 +72,6 @@ function checkOut() {
         url: "checkout",
         data: JSON.stringify({ registrationPlate: text }),
         success: response => {
-            console.log(response);
             showTicket(response);
         },
         error: () => {

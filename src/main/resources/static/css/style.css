@@ -45,11 +45,6 @@ form .input-group-append {
     min-width: 100px;
 }
 
-/*.form-control {*/
-    /*min-width: 50px;*/
-    /*max-width: 200px;*/
-/*}*/
-
 .input-group .input-group-text {
     width: 100%;
 }

@@ -12,9 +12,9 @@ $(document).ready(() => {
 
 function getTariff() {
     $.get("tariff-data", response => {
-        $("#basicFee").val(response.basicBid); //basicFee
-        $("#basicPeriod").val(response.basicPeriod); //basicPeriod
-        $("#extendedFee").val(response.extendedBid); //extendedFee
+        $("#basicFee").val(response.basicBid);
+        $("#basicPeriod").val(response.basicPeriod);
+        $("#extendedFee").val(response.extendedBid);
     });
 }
 

@@ -1,10 +1,10 @@
 const messages = {
-    TARIFF_SUCCESS: "Tariff successfully changed",
+    TARIFF_SUCCESS: "Tariff successfully updated",
     REGISTER_SUCCESS: "Car registration successful",
     REGISTER_FAIL: "Car registration failed",
-    CHECKOUT_FAIL: "peszek",
-    RELEASE_SUCCESS: "usunieto"
-}; //TODO zmienic
+    CHECKOUT_FAIL: "Invalid registration plate",
+    RELEASE_SUCCESS: "Payment registered"
+};
 
 function getInput(inputElement, clear = false) {
     let text = inputElement.val();
