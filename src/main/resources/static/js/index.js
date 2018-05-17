@@ -54,7 +54,7 @@ function registerCar() {
             showAlert(true, messages.REGISTER_SUCCESS);
             updateOccupancy();
         },
-        error: (jqXHR, textStatus, errorThrown) => {
+        error: () => {
             showAlert(false, messages.REGISTER_FAIL);
         }
     });
@@ -75,7 +75,7 @@ function checkOut() {
             console.log(response);
             showTicket(response);
         },
-        error: (jqXHR, textStatus, errorThrown) => {
+        error: () => {
             showAlert(false, messages.CHECKOUT_FAIL);
         }
     });
@@ -87,8 +87,8 @@ function showTicket(data) {
     });
 
     $("#checkoutRegistration").text(data.registrationPlate);
-    $("#checkoutArrival").text(data.arrivalTime);
-    $("#checkoutDeparture").text(data.departureTime);
+    $("#checkoutArrival").text(data.arrivalTime); //TODO format
+    $("#checkoutDeparture").text(data.departureTime); //TODO format
     $("#checkoutFee").text(data.fee);
 }
 
@@ -104,8 +104,11 @@ function release() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "release",
-        data: JSON.stringify({ registrationPlate: $("#checkoutRegistration").text() }),
+        url: "unregister",
+        data: JSON.stringify({
+            registrationPlate: $("#checkoutRegistration").text(),
+            //departure: date TODO co odsylac
+        }),
         success: () => {
             showAlert(true, messages.RELEASE_SUCCESS);
             updateOccupancy();

@@ -4,7 +4,7 @@ const messages = {
     REGISTER_FAIL: "Car registration failed",
     CHECKOUT_FAIL: "peszek",
     RELEASE_SUCCESS: "usunieto"
-};
+}; //TODO zmienic
 
 function getInput(inputElement, clear = false) {
     let text = inputElement.val();
