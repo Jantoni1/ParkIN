@@ -4,10 +4,12 @@ import demo.CarEntry;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@EnableWebMvc
 @Controller
 public class HelloWorldController {
     private List<CarEntry> db = new ArrayList<>();
