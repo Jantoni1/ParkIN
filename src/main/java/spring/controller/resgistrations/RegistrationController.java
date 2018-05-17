@@ -85,7 +85,7 @@ public class RegistrationController {
                 .findTopByRegistrationPlateOrderByArrivalDesc(pRegistration.getRegistrationPlate());
         if(registrationOptional.isPresent()) {
             Registration registration = registrationOptional.get();
-            registration.setDeparture(LocalDateTime.now());
+            registration.setDeparture(pRegistration.getDeparture());
             registrationRepository.save(registration);
             return new ResponseEntity<>(HttpStatus.OK);
         }
@@ -118,7 +118,8 @@ public class RegistrationController {
             fee = fee.add(tariff.getExtendedBid().multiply(minutesBigDecimal).divide(new BigDecimal(60), RoundingMode.FLOOR));
             fee = fee.add(tariff.getExtendedBid().multiply(extendedBigPeriod));
         }
-        return fee;
+
+        return fee.setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
 }
