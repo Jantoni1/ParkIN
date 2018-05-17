@@ -1,4 +1,4 @@
-package spring.controller.tarrifs;
+package spring.controller.tariffs;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.MediaType;

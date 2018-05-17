@@ -1,4 +1,4 @@
-package spring.controller.tarrifs;
+package spring.controller.tariffs;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

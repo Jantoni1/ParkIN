@@ -1,14 +1,14 @@
-package spring.controller.resgistrations;
+package spring.controller.registrations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.google.common.collect.ImmutableMap;
-import spring.controller.resgistrations.infrastructure.configuration.Configuration;
-import spring.controller.resgistrations.infrastructure.configuration.ConfigurationRepository;
-import spring.controller.tarrifs.Tariff;
-import spring.controller.tarrifs.TariffCrudRepository;
+import spring.controller.registrations.infrastructure.configuration.Configuration;
+import spring.controller.registrations.infrastructure.configuration.ConfigurationRepository;
+import spring.controller.tariffs.Tariff;
+import spring.controller.tariffs.TariffCrudRepository;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

@@ -1,4 +1,4 @@
-package spring.controller.resgistrations.infrastructure.configuration;
+package spring.controller.registrations.infrastructure.configuration;
 
 import org.springframework.data.repository.Repository;
 
