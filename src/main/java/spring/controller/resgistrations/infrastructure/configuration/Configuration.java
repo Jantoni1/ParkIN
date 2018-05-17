@@ -1,7 +1,6 @@
-package spring.controller.configuration;
+package spring.controller.resgistrations.infrastructure.configuration;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 @Table(name = "CONFIGURATIONS")
