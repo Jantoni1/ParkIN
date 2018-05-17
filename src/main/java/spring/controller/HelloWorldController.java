@@ -24,12 +24,6 @@ public class HelloWorldController {
     public CarEntry PostService(@RequestBody CarEntry car) {
         car.setId(db.size() + 1);
         db.add(car);
-//
-//        for (CarEntry item : db) {
-//            System.out.println(item.getId() + " " + item.getRegistration());
-//        }
-//        System.out.println();
-
         return car;
     }
 }
