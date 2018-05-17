@@ -17,13 +17,13 @@ public class TariffController {
         this.tariffCrudRepository = tariffCrudRepository;
     }
 
-    @PostMapping("/tariff")
+    @PostMapping("/tariff-data")
     public ResponseEntity<Void> postNewTariff(@RequestBody Tariff tariff) {
         tariffCrudRepository.save(tariff);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/tariff")
+    @GetMapping("/tariff-data")
     public ResponseEntity<Tariff> getLatestTariff() {
         Tariff tariff = tariffCrudRepository.findTopByOrderByIdDesc();
         return new ResponseEntity<>(tariff, HttpStatus.OK);

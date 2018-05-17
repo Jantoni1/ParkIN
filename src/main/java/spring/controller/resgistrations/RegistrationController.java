@@ -48,35 +48,41 @@ public class RegistrationController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<Void> registerCar(@RequestBody String registrationPlate) {
-        if(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc(registrationPlate)
+    public ResponseEntity<Void> registerCar(@RequestBody Registration pRegistration) {
+        if(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc(pRegistration.getRegistrationPlate())
                 .isPresent()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
-        registrationRepository.save(createRegistration(registrationPlate));
+        registrationRepository.save(createRegistration(pRegistration.getRegistrationPlate()));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
 
-    @GetMapping("/registration")
-    public Map<String, BigDecimal> carFeeLookup(@RequestBody String registrationPlate) {
+    @GetMapping("/checkout")
+    public ResponseEntity<ImmutableMap<String, String>>carFeeLookup(@RequestBody Registration pRegistration) {
         Optional<Registration> registrationOptional = registrationRepository
-                .findTopByRegistrationPlateOrderByArrivalDesc(registrationPlate);
+                .findTopByRegistrationPlateOrderByArrivalDesc(pRegistration.getRegistrationPlate());
         if(registrationOptional.isPresent()) {
             Registration registration = registrationOptional.get();
             Optional<Tariff> tariff = tariffCrudRepository.findOne(registration.getTariffId());
             if(tariff.isPresent()) {
-                BigDecimal fee = calculatePrice(registration, tariff.get());
-                return ImmutableMap.of("fee", fee, "found", new BigDecimal(1));
+                LocalDateTime now = LocalDateTime.now();
+                BigDecimal fee = calculatePrice(registration, tariff.get(), now);
+                return new ResponseEntity<>(ImmutableMap.of("fee", fee.toString()
+                        , "found", "false"
+                        , "registrationPlate", registration.getRegistrationPlate()
+                        , "arrivalTime", registration.getArrival().toString()
+                        , "departureTime", now.toString()), HttpStatus.OK);
             }
         }
-        return ImmutableMap.of("found", new BigDecimal(-1));
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PatchMapping("/unregister")
-    public ResponseEntity<Void>  unregisterCar(@RequestBody String registrationPlate) {
-        Optional<Registration> registrationOptional = registrationRepository.findTopByRegistrationPlateOrderByArrivalDesc(registrationPlate);
+    public ResponseEntity<Void>  unregisterCar(@RequestBody Registration pRegistration) {
+        Optional<Registration> registrationOptional = registrationRepository
+                .findTopByRegistrationPlateOrderByArrivalDesc(pRegistration.getRegistrationPlate());
         if(registrationOptional.isPresent()) {
             Registration registration = registrationOptional.get();
             registration.setDeparture(LocalDateTime.now());
@@ -96,8 +102,7 @@ public class RegistrationController {
     }
 
 
-    private BigDecimal calculatePrice(Registration registration, Tariff tariff) {
-        LocalDateTime now = LocalDateTime.now();
+    private BigDecimal calculatePrice(Registration registration, Tariff tariff, LocalDateTime now) {
         long hours = registration.getArrival().until(now, ChronoUnit.HOURS);
         long minutes = registration.getArrival().until(now, ChronoUnit.MINUTES) % 60;
         BigDecimal hoursBigDecimal = new BigDecimal(hours);
