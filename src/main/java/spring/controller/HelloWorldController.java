@@ -14,4 +14,9 @@ public class HelloWorldController {
     public String tariff() {
         return "tariff";
     }
+
+    @RequestMapping("/stats")
+    public String stats() {
+        return "stats";
+    }
 }
