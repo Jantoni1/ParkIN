@@ -87,8 +87,8 @@ function showTicket(data) {
     });
 
     $("#checkoutRegistration").text(data.registrationPlate);
-    $("#checkoutArrival").text(data.arrivalTime); //TODO format
-    $("#checkoutDeparture").text(data.departureTime); //TODO format
+    $("#checkoutArrival").text(data.arrivalTime);
+    $("#checkoutDeparture").text(data.departureTime);
     $("#checkoutFee").text(data.fee);
 }
 
@@ -107,7 +107,7 @@ function release() {
         url: "unregister",
         data: JSON.stringify({
             registrationPlate: $("#checkoutRegistration").text(),
-            //departure: date TODO co odsylac
+            departureTime: $("#checkoutDeparture").text()
         }),
         success: () => {
             showAlert(true, messages.RELEASE_SUCCESS);
