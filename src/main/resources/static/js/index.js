@@ -86,8 +86,8 @@ function showTicket(data) {
     });
 
     $("#checkoutRegistration").text(data.registrationPlate);
-    $("#checkoutArrival").text(data.arrivalTime);
-    $("#checkoutDeparture").text(data.departureTime);
+    $("#checkoutArrival").text(moment(data.arrival).format("YYYY-MM-DD HH:mm:ss"));
+    $("#checkoutDeparture").text(moment(data.departure).format("YYYY-MM-DD HH:mm:ss"));
     $("#checkoutFee").text(data.fee);
 }
 
@@ -106,7 +106,7 @@ function release() {
         url: "unregister",
         data: JSON.stringify({
             registrationPlate: $("#checkoutRegistration").text(),
-            departureTime: $("#checkoutDeparture").text()
+            departure: $("#checkoutDeparture").text()
         }),
         success: () => {
             showAlert(true, messages.RELEASE_SUCCESS);
