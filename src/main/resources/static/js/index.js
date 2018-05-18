@@ -54,8 +54,15 @@ function registerCar() {
             showAlert(true, messages.REGISTER_SUCCESS);
             updateOccupancy();
         },
-        error: () => {
-            showAlert(false, messages.REGISTER_FAIL);
+        error: (jqXHR) => {
+            switch (jqXHR.status) {
+                case 400:
+                    showAlert(false, messages.REGISTER_FAIL_EXISTS);
+                    break;
+                case 406:
+                    showAlert(false, messages.REGISTER_FAIL_TOO_LONG);
+                    break;
+            }
         }
     });
 }

@@ -1,7 +1,8 @@
 const messages = {
     TARIFF_SUCCESS: "Tariff successfully updated",
     REGISTER_SUCCESS: "Car registration successful",
-    REGISTER_FAIL: "Car registration failed",
+    REGISTER_FAIL_TOO_LONG: "Registration plate cannot exceed 12 characters",
+    REGISTER_FAIL_EXISTS: "Car is already registered",
     CHECKOUT_FAIL: "Invalid registration plate",
     RELEASE_SUCCESS: "Payment registered"
 };
