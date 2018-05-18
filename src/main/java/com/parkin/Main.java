@@ -1,4 +1,4 @@
-package spring.controller;
+package com.parkin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

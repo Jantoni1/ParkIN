@@ -1,22 +1,24 @@
-package spring.controller;
+package com.parkin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class HelloWorldController {
+public class HTMLProviderController {
+
     @RequestMapping("/")
-    public String index() {
+    public String indexHTML() {
         return "index";
     }
 
     @RequestMapping("/tariff")
-    public String tariff() {
+    public String tariffHTML() {
         return "tariff";
     }
 
     @RequestMapping("/stats")
-    public String stats() {
+    public String statsHTML() {
         return "stats";
     }
+
 }
