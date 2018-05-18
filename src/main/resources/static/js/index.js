@@ -54,10 +54,10 @@ function registerCar() {
             showAlert(true, messages.REGISTER_SUCCESS);
             updateOccupancy();
         },
-        error: (jqXHR) => {
+        error: jqXHR => {
             switch (jqXHR.status) {
                 case 400:
-                    showAlert(false, messages.REGISTER_FAIL_EXISTS);
+                    showAlert(false, messages.REGISTER_FAIL_CONFLICT);
                     break;
                 case 406:
                     showAlert(false, messages.REGISTER_FAIL_TOO_LONG);

@@ -9,7 +9,7 @@ $(document).ready(() => {
             setClean();
         }
     });
-    $(":input").bind('keyup mouseup', () => {
+    $(":input").bind("keyup mouseup", () => {
         if (isDirty()) {
             $("button").prop("disabled", false).removeClass("disabled");
         }
