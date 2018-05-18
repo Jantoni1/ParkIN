@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+    <th:block th:fragment="alert">
+        <div class="alert alert-success collapse" role="alert">
+            <span class="fa fa-check-circle"></span> <span class="alertText"></span>
+        </div>
+        <div class="alert alert-danger collapse" role="alert">
+            <span class="fa fa-exclamation-circle"></span> <span class="alertText"></span>
+        </div>
+    </th:block>
+</body>
+</html>

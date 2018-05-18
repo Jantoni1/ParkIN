@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/layout" th:with="activeTab='tariff'">
+<head>
+    <title>tariff</title>
+    <script type="text/javascript" th:src="@{/js/tariff.js}"></script>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div th:replace="fragments/alert :: alert"></div>
+        <div class="jumbotron jumbotron-fluid element">
+            <h1>Modify tariff</h1>
+            <form class="needs-validation" novalidate="novalidate">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Basic fee</span>
+                    </div>
+                    <input type="number" step="0.01" min="0.01" id="basicFee" class="form-control" required="required"/>
+                    <div class="input-group-append">
+                        <span class="input-group-text">&euro; per hour</span>
+                    </div>
+                    <div class="invalid-feedback">Invalid data</div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Basic period</span>
+                    </div>
+                    <input type="number" min="1" id="basicPeriod" class="form-control" required="required"/>
+                    <div class="input-group-append">
+                        <span class="input-group-text">hours</span>
+                    </div>
+                    <div class="invalid-feedback">Invalid data</div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Extended time fee</span>
+                    </div>
+                    <input type="number" step="0.01" min="0" id="extendedFee" class="form-control" required="required"/>
+                    <div class="input-group-append">
+                        <span class="input-group-text">&euro; per hour</span>
+                    </div>
+                    <div class="invalid-feedback">Invalid data</div>
+                </div>
+                <button class="btn btn-dark" type="submit">Submit changes</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
