@@ -82,4 +82,24 @@ public class TariffTest {
         Assertions.assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         BDDMockito.verify(tariffCrudRepository).save(Mockito.any(Tariff.class));
     }
+
+
+    @Test
+    public void canRetrieveTariffByIdFromRepository() throws Exception {
+        JacksonTester.initFields(this, new ObjectMapper());
+        TariffCrudRepository tariffCrudRepository = Mockito.mock(TariffCrudRepository.class);
+        Tariff t[] = new Tariff[3];
+        for(int i=0;i<3;i++) {
+            t[i] = new Tariff();
+            t[i].setBasicBid(BigDecimal.valueOf(3.4));
+            t[i].setExtendedBid(BigDecimal.valueOf(4.4));
+            t[i].setBasicPeriod(0.2+i);
+            BDDMockito.given(tariffCrudRepository.findOne((long)i)).willReturn(Optional.of(t[i]));
+        }
+        for(int i=0;i<3;i++) {
+            assertThat(tariffCrudRepository.findOne((long)i)).isEqualTo(Optional.of(t[i]));
+        }
+        assertThat(tariffCrudRepository.findOne((long)4)).isEqualTo(null);
+        assertThat(tariffCrudRepository.findOne((long)5)).isEqualTo(null);
+    }
 }
