@@ -18,6 +18,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.TimeZone;
 
 @RestController
 public class RegistrationController {
@@ -51,6 +52,9 @@ public class RegistrationController {
     public ResponseEntity<Void> registerCar(@RequestBody Registration pRegistration) {
         if(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc(pRegistration.getRegistrationPlate())
                 .isPresent()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if(pRegistration.getRegistrationPlate().length() > 12) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
         registrationRepository.save(createRegistration(pRegistration.getRegistrationPlate()));
@@ -89,10 +93,10 @@ public class RegistrationController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/stats-data")
+    @GetMapping("/statistics")
     public ImmutableMap<String, String>getStatistics() {
+        TimeZone.setDefault(TimeZone.getTimeZone("Europe/Warsaw"));
         LocalDateTime time = LocalDate.now().atStartOfDay();
-        System.out.println(time);
         List<Registration> arrivals  = registrationRepository.findAllByArrivalGreaterThan(time);
         List<Registration> departures = registrationRepository.findAllByDepartureGreaterThan(time);
         BigDecimal earnings = new BigDecimal(0);

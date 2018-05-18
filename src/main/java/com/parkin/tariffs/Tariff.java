@@ -46,4 +46,5 @@ public class Tariff {
     public void setExtendedBid(BigDecimal extendedBid) {
         this.extendedBid = extendedBid;
     }
+
 }
