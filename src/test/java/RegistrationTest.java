@@ -344,7 +344,7 @@ public class RegistrationTest {
         ConfigurationRepository configurationRepository = mock(ConfigurationRepository.class);
         RegistrationRepository registrationRepository = mock(RegistrationRepository.class);
         TariffCrudRepository tariffCrudRepository = mock(TariffCrudRepository.class);
-        RegistrationController registrationController= new RegistrationController(configurationRepository, registrationRepository, tariffCrudRepository);
+        RegistrationController registrationController = new RegistrationController(configurationRepository, registrationRepository, tariffCrudRepository);
 
         //given
         Tariff t = new Tariff();
@@ -352,30 +352,45 @@ public class RegistrationTest {
         t.setExtendedBid(BigDecimal.valueOf(3.0));
         t.setBasicPeriod(3.0);
 
-        Registration reg=new Registration();
+        Registration reg = new Registration();
         reg.setRegistrationPlate("WAW120");
-        reg.setTariffId((long)1);
+        reg.setTariffId((long) 1);
         reg.setArrival(LocalDateTime.now().minusHours(3));
 
         //when
         when(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc("WAW120")).thenReturn(Optional.of(reg));
         when(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc("WAW121")).thenReturn(Optional.empty());
+        when(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc("WAW1234567890")).thenReturn(Optional.empty());
         when(tariffCrudRepository.findTopByOrderByIdDesc()).thenReturn(t);
         //then
+        /*
         mockMvc = MockMvcBuilders.standaloneSetup(registrationController).build();
         MockHttpServletResponse response = mockMvc.perform(post("/register")
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW120\"}")
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
         assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_ACCEPTABLE.value());
+*/
 
-
-        response = mockMvc.perform(post("/register")
+        mockMvc = MockMvcBuilders.standaloneSetup(registrationController).build();
+        MockHttpServletResponse response = mockMvc.perform(post("/register")
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW121\"}")
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         BDDMockito.verify(registrationRepository).save(Mockito.any(Registration.class));
+
+        response = mockMvc.perform(post("/register")
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW120\"}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.BAD_REQUEST.value());
+
+        response = mockMvc.perform(post("/register")
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW1234567890\"}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_ACCEPTABLE.value());
     }
 }
 
