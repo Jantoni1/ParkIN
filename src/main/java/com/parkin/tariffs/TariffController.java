@@ -1,4 +1,4 @@
-package spring.controller.tariffs;
+package com.parkin.tariffs;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.MediaType;

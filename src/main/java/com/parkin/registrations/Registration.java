@@ -1,7 +1,7 @@
-package spring.controller.registrations;
+package com.parkin.registrations;
 
 
-import spring.controller.registrations.infrastructure.LocalDateTimeConverter;
+import com.parkin.registrations.infrastructure.LocalDateTimeConverter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

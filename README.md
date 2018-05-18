@@ -66,7 +66,7 @@ User can interact with ParkIn parking management system using web interface. Thi
 
 2. Accessing information about parking area
     * In order to access information user must be logged in
-    * spring.controller.Main view consists of basic information about current status of parking area and is updated every time car enters or leaves
+    * com.parkin.Main view consists of basic information about current status of parking area and is updated every time car enters or leaves
     * Basic status info consists of capacity, number of free and taken spots
 
 3. Registering cars

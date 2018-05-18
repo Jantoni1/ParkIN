@@ -1,4 +1,4 @@
-package spring.controller.registrations;
+package com.parkin.registrations;
 
 import org.springframework.data.repository.Repository;
 import org.springframework.data.rest.core.annotation.RestResource;
@@ -19,4 +19,6 @@ public interface RegistrationRepository extends Repository<Registration, Long> {
     Optional<Registration> findTopByRegistrationPlateOrderByArrivalDesc(String registrationPlate);
 
     List<Registration> findAllByDepartureGreaterThan(LocalDateTime time);
+
+    List<Registration> findAllByArrivalGreaterThan(LocalDateTime time);
 }

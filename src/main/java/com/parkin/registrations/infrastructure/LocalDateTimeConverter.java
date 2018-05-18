@@ -1,4 +1,4 @@
-package spring.controller.registrations.infrastructure;
+package com.parkin.registrations.infrastructure;
 
 import javax.persistence.AttributeConverter;
 import java.sql.Timestamp;

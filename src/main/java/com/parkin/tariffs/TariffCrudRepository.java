@@ -1,4 +1,4 @@
-package spring.controller.tariffs;
+package com.parkin.tariffs;
 
 import org.springframework.data.repository.Repository;
 import org.springframework.data.rest.core.annotation.RestResource;

@@ -1,17 +1,18 @@
-package spring.controller.registrations;
+package com.parkin.registrations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.google.common.collect.ImmutableMap;
-import spring.controller.registrations.infrastructure.configuration.Configuration;
-import spring.controller.registrations.infrastructure.configuration.ConfigurationRepository;
-import spring.controller.tariffs.Tariff;
-import spring.controller.tariffs.TariffCrudRepository;
+import com.parkin.registrations.infrastructure.configuration.Configuration;
+import com.parkin.registrations.infrastructure.configuration.ConfigurationRepository;
+import com.parkin.tariffs.Tariff;
+import com.parkin.tariffs.TariffCrudRepository;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -87,6 +88,24 @@ public class RegistrationController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/stats-data")
+    public ImmutableMap<String, String>getStatistics() {
+        LocalDateTime time = LocalDate.now().atStartOfDay();
+        System.out.println(time);
+        List<Registration> arrivals  = registrationRepository.findAllByArrivalGreaterThan(time);
+        List<Registration> departures = registrationRepository.findAllByDepartureGreaterThan(time);
+        BigDecimal earnings = new BigDecimal(0);
+        for(Registration registration: departures) {
+            Optional<Tariff> tariffOptional = tariffCrudRepository.findOne(registration.getTariffId());
+            Tariff tariff = tariffOptional.orElse(new Tariff());
+            earnings = earnings.add(calculatePrice(registration, tariff, registration.getDeparture()));
+        }
+        return ImmutableMap.of("earnings", earnings.toString()
+                , "arrivals", Integer.toString(arrivals.size())
+                , "departures", Integer.toString(departures.size()));
+    }
+
 
     private Registration createRegistration(String registrationPlate) {
         Registration registration = new Registration();

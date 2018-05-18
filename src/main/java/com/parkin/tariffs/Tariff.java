@@ -1,4 +1,4 @@
-package spring.controller.tariffs;
+package com.parkin.tariffs;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
