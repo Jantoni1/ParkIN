@@ -59,6 +59,11 @@
             <artifactId>google-collections</artifactId>
             <version>1.0-rc2</version>
         </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-mockito-release-full</artifactId>
+            <version>1.6.4</version>
+        </dependency>
 
     </dependencies>
 
