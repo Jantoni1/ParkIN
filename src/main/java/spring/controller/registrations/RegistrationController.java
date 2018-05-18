@@ -100,18 +100,22 @@ public class RegistrationController {
     private BigDecimal calculatePrice(Registration registration, Tariff tariff, LocalDateTime now) {
         long hours = registration.getArrival().until(now, ChronoUnit.HOURS);
         long minutes = registration.getArrival().until(now, ChronoUnit.MINUTES) % 60;
+        long seconds = registration.getArrival().until(now, ChronoUnit.SECONDS) % 60;
         BigDecimal hoursBigDecimal = new BigDecimal(hours);
         BigDecimal minutesBigDecimal = new BigDecimal(minutes);
+        BigDecimal secondsBigDecimal = new BigDecimal(seconds);
         BigDecimal fee;
         if(hours < tariff.getBasicPeriod()) {
             fee = tariff.getBasicBid().multiply(hoursBigDecimal);
             fee = fee.add(tariff.getBasicBid().multiply(minutesBigDecimal).divide(new BigDecimal(60), RoundingMode.FLOOR));
+            fee = fee.add(tariff.getBasicBid().multiply(secondsBigDecimal).divide(new BigDecimal(3600), RoundingMode.FLOOR));
         }
         else {
             BigDecimal extendedBigPeriod = hoursBigDecimal.subtract(new BigDecimal(tariff.getBasicPeriod()));
             fee = tariff.getBasicBid().multiply(new BigDecimal(tariff.getBasicPeriod()));
-            fee = fee.add(tariff.getExtendedBid().multiply(minutesBigDecimal).divide(new BigDecimal(60), RoundingMode.FLOOR));
             fee = fee.add(tariff.getExtendedBid().multiply(extendedBigPeriod));
+            fee = fee.add(tariff.getExtendedBid().multiply(minutesBigDecimal).divide(new BigDecimal(60), RoundingMode.FLOOR));
+            fee = fee.add(tariff.getExtendedBid().multiply(secondsBigDecimal).divide(new BigDecimal(3600), RoundingMode.FLOOR));
         }
 
         return fee.setScale(2, BigDecimal.ROUND_HALF_UP);
