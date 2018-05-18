@@ -8,8 +8,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = Main.class)
 public class MainTest {
 
+
     @Test
-    public void contextLoads() throws Exception {
+    public void applicationContextTest() {
+        Main.main(new String[] {});
     }
 
 }
