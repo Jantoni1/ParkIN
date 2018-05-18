@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title layout:title-pattern="$DECORATOR_TITLE | $CONTENT_TITLE">ParkIN</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript" th:src="@{/js/utils.js}"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a>
+                <img th:src="@{/images/logo_navbar.png}" width="36" height="36" alt=""/>
+            </a>
+            <a class="navbar-brand ml-2" href="#">ParkIN</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item mx-1" th:classappend="${activeTab == 'home'}? 'active' : null">
+                        <a class="nav-link" th:href="@{/}"><span class="fa fa-home"></span> Home</a>
+                    </li>
+                    <li class="nav-item mx-1" th:classappend="${activeTab == 'tariff'}? 'active' : null">
+                        <a class="nav-link" th:href="@{/tariff}"><span class="fa fa-wrench"></span> Tariff</a>
+                    </li>
+                    <li class="nav-item mx-1" th:classappend="${activeTab == 'stats'}? 'active' : null">
+                        <a class="nav-link" th:href="@{/stats}"><span class="fa fa-chart-bar"></span> Statistics</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container" layout:fragment="content">
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <span>&#9400; 2018 ParkIN Team</span>
+        </div>
+    </footer>
+</body>
+</html>

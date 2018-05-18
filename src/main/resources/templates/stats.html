@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/layout" th:with="activeTab='stats'">
+<head>
+    <title>statistics</title>
+    <script type="text/javascript" th:src="@{/js/stats.js}"></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="jumbotron jumbotron-fluid element">
+        <h1>Daily statistics</h1>
+        <p class="lead"><span class="fa fa-money-bill-wave"></span> Daily earnings: <strong><span id="dailyEarnings"></span> &euro;</strong></p>
+        <p class="lead"><span class="fa fa-sign-in-alt"></span> Arrivals: <strong><span id="arrivals"></span></strong></p>
+        <p class="lead"><span class="fa fa-sign-out-alt"></span> Departures: <strong><span id="departures"></span></strong></p>
+    </div>
+</div>
+</body>
+</html>
