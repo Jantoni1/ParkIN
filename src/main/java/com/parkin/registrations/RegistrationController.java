@@ -52,7 +52,7 @@ public class RegistrationController {
     public ResponseEntity<Void> registerCar(@RequestBody Registration pRegistration) {
         if(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc(pRegistration.getRegistrationPlate())
                 .isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         if(pRegistration.getRegistrationPlate().length() > 12) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);

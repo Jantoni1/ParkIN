@@ -47,10 +47,4 @@ public class Tariff {
         this.extendedBid = extendedBid;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return obj instanceof Tariff && (((Tariff)obj).getBasicBid().equals(basicBid)
-                && ((Tariff)obj).getExtendedBid().equals(extendedBid)
-                && ((Tariff)obj).getBasicPeriod().equals(basicPeriod));
-    }
 }
