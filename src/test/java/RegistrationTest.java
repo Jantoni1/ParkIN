@@ -4,12 +4,14 @@ import com.parkin.registrations.RegistrationRepository;
 import com.parkin.registrations.infrastructure.configuration.ConfigurationRepository;
 import com.parkin.tariffs.Tariff;
 import com.parkin.tariffs.TariffCrudRepository;
+import org.apache.tomcat.jni.Local;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.reflect.Whitebox;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -17,6 +19,21 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 public class RegistrationTest {
+
+    @Test
+    public void givenRegistrationWithoutDbShouldHaveNullId() {
+        Registration registration = new Registration();
+        assertThat(registration.getId()).isNull();
+    }
+
+    @Test
+    public void givenRegistrationShouldBeAbleToSetDeparture() {
+        Registration registration = new Registration();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String currTime = formatter.format(LocalDateTime.now());
+        registration.setDeparture(currTime);
+        assertThat(registration.getDeparture()).isEqualTo(LocalDateTime.parse(currTime, formatter));
+    }
 
     @Test
     public void givenRegistrationAllMembersShouldInitializeCorrectly() {
