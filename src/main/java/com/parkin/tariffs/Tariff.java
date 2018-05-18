@@ -46,4 +46,11 @@ public class Tariff {
     public void setExtendedBid(BigDecimal extendedBid) {
         this.extendedBid = extendedBid;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Tariff && (((Tariff)obj).getBasicBid().equals(basicBid)
+                && ((Tariff)obj).getExtendedBid().equals(extendedBid)
+                && ((Tariff)obj).getBasicPeriod().equals(basicPeriod));
+    }
 }

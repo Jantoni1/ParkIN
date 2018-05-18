@@ -19,6 +19,9 @@ public class TariffController {
 
     @PostMapping("/tariff-data")
     public ResponseEntity<Void> postNewTariff(@RequestBody Tariff tariff) {
+        if(tariffCrudRepository.findTopByOrderByIdDesc().equals(tariff)) {
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
         tariffCrudRepository.save(tariff);
         return new ResponseEntity<>(HttpStatus.OK);
     }
