@@ -6,16 +6,16 @@ $(document).ready(() => {
         if (event.currentTarget.checkValidity()) {
             $(event.currentTarget).removeClass("was-validated");
             postTariff();
-            setClean();
         }
     });
     $(":input").bind("keyup mouseup", () => {
-        if (isDirty()) {
-            $("button").prop("disabled", false).removeClass("disabled");
-        }
-        else {
-            $("button").prop("disabled", true).addClass("disabled");
-        }
+        let dirty = false;
+        $(":input").each(function() {
+            if ($(this).data("initialValue") !== $(this).val()) {
+                dirty = true;
+            }
+        });
+        $("button").prop("disabled", !dirty).toggleClass("disabled", !dirty);
     });
 });
 
@@ -26,23 +26,6 @@ function getTariff() {
         $("#extendedFee").val(response.extendedBid);
         setClean();
     });
-}
-
-function setClean() {
-    $("button").prop("disabled", true).addClass("disabled");
-    $(":input").each(function() {
-        $(this).data("initialValue", $(this).val());
-    });
-}
-
-function isDirty() {
-    let dirty = false;
-    $(":input").each(function() {
-        if ($(this).data("initialValue") !== $(this).val()) {
-            dirty = true;
-        }
-    });
-    return dirty;
 }
 
 function postTariff() {
@@ -56,7 +39,15 @@ function postTariff() {
             extendedBid: $("#extendedFee").val()
         }),
         success: () => {
+            setClean();
             showAlert(true, messages.TARIFF_SUCCESS);
         }
+    });
+}
+
+function setClean() {
+    $("button").prop("disabled", true).addClass("disabled");
+    $(":input").each(function() {
+        $(this).data("initialValue", $(this).val());
     });
 }

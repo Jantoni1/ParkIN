@@ -3,8 +3,21 @@ let chartHandler;
 $(document).ready(() => {
     prepareChart();
     updateOccupancy();
+
     $("#registerButton").click(registerCar);
+    $("#registerInput").keyup((event) => {
+        if (event.keyCode === 13) {
+            registerCar();
+        }
+    });
+
     $("#checkoutButton").click(checkOut);
+    $("#checkoutInput").keyup((event) => {
+        if (event.keyCode === 13) {
+            checkOut();
+        }
+    });
+
     $("#cancelReleaseButton").click(hideTicket);
     $("#releaseButton").click(release);
 });
