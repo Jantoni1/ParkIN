@@ -28,7 +28,6 @@ public class HTMLProviderTests {
     @Autowired
     private WebApplicationContext wac;
 
-
     private MockMvc mockMvc;
     ObjectMapper mapper = new ObjectMapper();
 

@@ -10,6 +10,7 @@ import com.parkin.tariffs.TariffCrudRepository;
 import org.apache.tomcat.jni.Local;
 import org.assertj.core.api.Assertions;
 import org.hibernate.annotations.Check;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.BDDMockito;
@@ -40,8 +41,23 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 public class RegistrationTest {
 
     private MockMvc mockMvc;
-    private JacksonTester<Tariff> jsonConverter;
+    private ConfigurationRepository configurationRepository;
+    private RegistrationRepository registrationRepository;
+    private TariffCrudRepository tariffCrudRepository;
+    private RegistrationController controller;
+    private ObjectMapper mapper = new ObjectMapper();
 
+    @Before
+    public void setup() {
+        configurationRepository = mock(ConfigurationRepository.class);
+        registrationRepository = mock(RegistrationRepository.class);
+        tariffCrudRepository = mock(TariffCrudRepository.class);
+        controller = new RegistrationController(configurationRepository,registrationRepository,tariffCrudRepository);
+        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+    }
+
+
+    //not-Rest tests
     @Test
     public void givenRegistrationWithoutDbShouldHaveNullId() {
         Registration registration = new Registration();
@@ -79,18 +95,10 @@ public class RegistrationTest {
     }
 
     @Test
-    public void givenDepartureAndArrivalShouldCalculatePriceCorrectlyCase2() throws Exception {
-
-        //before
-        Registration testRegistration = new Registration();
-        Tariff testTariff = mock(Tariff.class);
-        ConfigurationRepository configurationRepository = mock(ConfigurationRepository.class);
-        RegistrationRepository registrationRepository = mock(RegistrationRepository.class);
-        TariffCrudRepository tariffCrudRepository = mock(TariffCrudRepository.class);
-        RegistrationController controller = new RegistrationController
-                (configurationRepository,registrationRepository,tariffCrudRepository);
-
+    public void givenDepartureAndArrivalShouldCalculatePriceCorrectlyOutsideBasicPeriod() throws Exception {
         //given
+        Tariff testTariff = mock(Tariff.class);
+        Registration testRegistration = new Registration();
         LocalDateTime currTime = LocalDateTime.now();
 
         //when
@@ -105,21 +113,11 @@ public class RegistrationTest {
         assertThat(price).isEqualTo(4.0);
     }
 
-
-
     @Test
-    public void givenDepartureAndArrivalShouldCalculatePriceCorrectlyCase1() throws Exception {
-
-        //before
+    public void givenDepartureAndArrivalTimeShouldCalculatePriceCorrectlyInsideBasicPeriod() throws Exception {
+        //given
         Registration testRegistration = new Registration();
         Tariff testTariff = mock(Tariff.class);
-        ConfigurationRepository configurationRepository = mock(ConfigurationRepository.class);
-        RegistrationRepository registrationRepository = mock(RegistrationRepository.class);
-        TariffCrudRepository tariffCrudRepository = mock(TariffCrudRepository.class);
-        RegistrationController controller = new RegistrationController
-                (configurationRepository, registrationRepository, tariffCrudRepository);
-
-        //given
         LocalDateTime currTime = LocalDateTime.now();
 
         //when
@@ -136,14 +134,7 @@ public class RegistrationTest {
     }
 
     @Test
-    public void checkCreateRegistrationResult()throws Exception {
-
-        //before
-        ConfigurationRepository configurationRepository = mock(ConfigurationRepository.class);
-        RegistrationRepository registrationRepository = mock(RegistrationRepository.class);
-        TariffCrudRepository tariffCrudRepository = mock(TariffCrudRepository.class);
-        RegistrationController registrationController= new RegistrationController(configurationRepository, registrationRepository, tariffCrudRepository);
-
+    public void givenRegistrationPlateShouldReturnRegistration()throws Exception {
         //given
         Tariff t = new Tariff();
         t.setBasicBid(BigDecimal.valueOf(3.4));
@@ -155,23 +146,15 @@ public class RegistrationTest {
 
         //then
         String registrationPlate = "WAW12345";
-        Registration result = Whitebox.<Registration>invokeMethod(registrationController, "createRegistration", registrationPlate);
+        Registration result = Whitebox.<Registration>invokeMethod(controller, "createRegistration", registrationPlate);
         assertThat(registrationPlate).isEqualTo(result.getRegistrationPlate());
     }
 
+    //Rest GET tests
     @Test
-    public void checkSlotsInfoResult()throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-
-        //before
-        ConfigurationRepository configurationRepository = mock(ConfigurationRepository.class);
-        RegistrationRepository registrationRepository = mock(RegistrationRepository.class);
-        TariffCrudRepository tariffCrudRepository = mock(TariffCrudRepository.class);
-        RegistrationController registrationController= new RegistrationController(configurationRepository, registrationRepository, tariffCrudRepository);
-
+    public void getSlotsInfoShouldReturnParkingInfo()throws Exception {
         //given
         Configuration conf = new Configuration();
-
         conf.setName("capacity");
         conf.setValue(1234);
 
@@ -179,37 +162,73 @@ public class RegistrationTest {
         t.setBasicBid(BigDecimal.valueOf(3.4));
         t.setExtendedBid(BigDecimal.valueOf(4.4));
         t.setBasicPeriod(3.2);
+
         ArrayList<Registration> al = new ArrayList<>();
-        for(int i=0;i<123;i++)
-            al.add(new Registration());
+        for(int i=0;i<123;i++) al.add(new Registration());
+
         //when
         when(tariffCrudRepository.findTopByOrderByIdDesc()).thenReturn(t);
         when(configurationRepository.findByName("capacity")).thenReturn(Optional.of(conf));
         when(registrationRepository.findAllByDepartureIsNull()).thenReturn(al);
 
-        //then
-        mockMvc = MockMvcBuilders.standaloneSetup(registrationController).build();
         MockHttpServletResponse response = mockMvc.perform(get("/slots-info")
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
+
+        //then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(mapper.writeValueAsString(ImmutableMap.of("capacity", conf.getValue(), "occupied", 123)));
         assertThat(conf.getId()).isEqualTo(null);
         assertThat(conf.getName()).isEqualTo("capacity");
     }
 
-
     @Test
-    public void checkIfCheckoutIsCorrect()throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-        //before
-        ConfigurationRepository configurationRepository = mock(ConfigurationRepository.class);
-        RegistrationRepository registrationRepository = mock(RegistrationRepository.class);
-        TariffCrudRepository tariffCrudRepository = mock(TariffCrudRepository.class);
-        RegistrationController registrationController= new RegistrationController(configurationRepository, registrationRepository, tariffCrudRepository);
+    public void getStatisticsShouldReturnCorrectData()throws Exception {
+        //given
+        Tariff t = new Tariff();
+        t.setBasicBid(BigDecimal.valueOf(2.0));
+        t.setExtendedBid(BigDecimal.valueOf(3.0));
+        t.setBasicPeriod(3.0);
+
+        ArrayList<Registration> arr = new ArrayList<>();
+
+        Registration reg[] = new Registration[3];
+        for(int i=0;i<3;i++) {
+            reg[i]=new Registration();
+            reg[i].setRegistrationPlate("WAW120"+i);
+            reg[i].setTariffId((long)1);
+            reg[i].setArrival(LocalDateTime.now().minusHours(3));
+            arr.add(reg[i]);
+        }
+        reg[2].setDeparture(LocalDateTime.now().minusHours(1));
+
+        ArrayList<Registration> dep = new ArrayList<>();
+        dep.add(reg[2]);
+        LocalDateTime time = LocalDate.now().atStartOfDay();
+
+        //when
+        when(registrationRepository.findAllByArrivalGreaterThan(time)).thenReturn(arr);
+        when(registrationRepository.findAllByDepartureGreaterThan(time)).thenReturn(dep);
+        when(tariffCrudRepository.findOne((long)1)).thenReturn(Optional.of(t));
+
+        MockHttpServletResponse response = mockMvc.perform(get("/statistics")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
+
+        //then
+        StatisticsResponse res = mapper.readValue(response.getContentAsString(), StatisticsResponse.class);
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+        assertThat(res.getEarnings()).isEqualTo(4.0);
+        assertThat(res.getArrivals()).isEqualTo(3);
+        assertThat(res.getDepartures()).isEqualTo(1);
+    }
+
+    //Rest POST tests
+    @Test
+    public void postCheckoutGivenExistingRegistrationPlateShouldCheckout()throws Exception {
         //given
         String correctPlate = "WAW123";
-        String incorrectPlate = "BI123";
 
         Tariff t = new Tariff();
         t.setBasicBid(BigDecimal.valueOf(3.4));
@@ -223,92 +242,52 @@ public class RegistrationTest {
 
         Registration request = new Registration();
         request.setRegistrationPlate(correctPlate);
+
         //when
         when(registrationRepository.findTopByRegistrationPlateOrderByArrivalDesc(correctPlate)).thenReturn(Optional.of(reg));
-        when(registrationRepository.findTopByRegistrationPlateOrderByArrivalDesc(incorrectPlate)).thenReturn(Optional.empty());
         when(tariffCrudRepository.findOne((long)1)).thenReturn(Optional.of(t));
-        //then
-        mockMvc = MockMvcBuilders.standaloneSetup(registrationController).build();
+
         MockHttpServletResponse response = mockMvc.perform(post("/checkout")
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW123\"}")
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
-
         CheckoutResponse res = mapper.readValue(response.getContentAsString(), CheckoutResponse.class);
+
+        //then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(res.getRegistrationPlate()).isEqualTo(correctPlate);
         assertThat(res.getFee()).isEqualTo(10.2);
+    }
 
-        response = mockMvc.perform(post("/checkout")
+    @Test
+    public void postCheckoutGivenNotExistingRegistrationPlateShouldSendNotFoundStatus()throws Exception {
+        //when
+        when(registrationRepository.findTopByRegistrationPlateOrderByArrivalDesc("BI123")).thenReturn(Optional.empty());
+        MockHttpServletResponse response = mockMvc.perform(post("/checkout")
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"BI123\"}")
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
+        //then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());
     }
 
 
     @Test
-    public void checkIfStatisticIsCorrect()throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-
-        //before
-        ConfigurationRepository configurationRepository = mock(ConfigurationRepository.class);
-        RegistrationRepository registrationRepository = mock(RegistrationRepository.class);
-        TariffCrudRepository tariffCrudRepository = mock(TariffCrudRepository.class);
-        RegistrationController registrationController= new RegistrationController(configurationRepository, registrationRepository, tariffCrudRepository);
-
-        //given
-        Tariff t = new Tariff();
-        t.setBasicBid(BigDecimal.valueOf(2.0));
-        t.setExtendedBid(BigDecimal.valueOf(3.0));
-        t.setBasicPeriod(3.0);
-
-        Registration reg[] = new Registration[3];
-        for(int i=0;i<3;i++) {
-            reg[i]=new Registration();
-            reg[i].setRegistrationPlate("WAW120"+i);
-            reg[i].setTariffId((long)1);
-            reg[i].setArrival(LocalDateTime.now().minusHours(3));
-        }
-        reg[2].setDeparture(LocalDateTime.now().minusHours(1));
-        ArrayList<Registration> arr = new ArrayList<>();
-        arr.add(reg[0]);
-        arr.add(reg[1]);
-        arr.add(reg[2]);
-        ArrayList<Registration> dep = new ArrayList<>();
-        dep.add(reg[2]);
-        LocalDateTime time = LocalDate.now().atStartOfDay();
-
+    public void postUnregisterGivenNotExistingEntryShouldSendNotFound()throws Exception {
         //when
-        when(registrationRepository.findAllByArrivalGreaterThan(time)).thenReturn(arr);
-        when(registrationRepository.findAllByDepartureGreaterThan(time)).thenReturn(dep);
-        when(tariffCrudRepository.findOne((long)1)).thenReturn(Optional.of(t));
-        //then
-        mockMvc = MockMvcBuilders.standaloneSetup(registrationController).build();
-        MockHttpServletResponse response = mockMvc.perform(get("/statistics")
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+        when(registrationRepository.findTopByRegistrationPlateOrderByArrivalDesc("WAW121")).thenReturn(Optional.empty());
+        MockHttpServletResponse response = mockMvc.perform(post("/unregister")
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW121\"}")
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
 
-        StatisticsResponse res = mapper.readValue(response.getContentAsString(), StatisticsResponse.class);
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-        assertThat(res.getEarnings()).isEqualTo(4.0);
-        assertThat(res.getArrivals()).isEqualTo(3);
-        assertThat(res.getDepartures()).isEqualTo(1);
+        //then
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());
     }
 
     @Test
-    public void givenCorrectPlateShouldUnregister()throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-
-        //before
-        ConfigurationRepository configurationRepository = mock(ConfigurationRepository.class);
-        RegistrationRepository registrationRepository = mock(RegistrationRepository.class);
-        TariffCrudRepository tariffCrudRepository = mock(TariffCrudRepository.class);
-        RegistrationController registrationController= new RegistrationController(configurationRepository, registrationRepository, tariffCrudRepository);
-
+    public void postUnregisterGivenExistingEntryShouldUnregister()throws Exception {
         //given
-
         Registration reg=new Registration();
         reg.setRegistrationPlate("WAW120");
         reg.setTariffId((long)1);
@@ -316,42 +295,33 @@ public class RegistrationTest {
 
         //when
         when(registrationRepository.findTopByRegistrationPlateOrderByArrivalDesc("WAW120")).thenReturn(Optional.of(reg));
-        when(registrationRepository.findTopByRegistrationPlateOrderByArrivalDesc("WAW121")).thenReturn(Optional.empty());
-        //then
-        mockMvc = MockMvcBuilders.standaloneSetup(registrationController).build();
         MockHttpServletResponse response = mockMvc.perform(post("/unregister")
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW120\"}")
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
+
+        //then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         BDDMockito.verify(registrationRepository).save(Mockito.any(Registration.class));
-
-
-        response = mockMvc.perform(post("/unregister")
-                .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW121\"}")
-                .accept(MediaType.APPLICATION_JSON))
-                .andReturn().getResponse();
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());
-
     }
 
+    @Test
+    public void postRegisterGivenTooLongPlateShouldSendNotAcceptable()throws Exception {
+        //when
+        when(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc("WAW1234567890")).thenReturn(Optional.empty());
+
+        MockHttpServletResponse response = mockMvc.perform(post("/register")
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW1234567890\"}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
+
+        //then
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_ACCEPTABLE.value());
+    }
 
     @Test
-    public void givenCorrectPlateShouldRegister()throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-
-        //before
-        ConfigurationRepository configurationRepository = mock(ConfigurationRepository.class);
-        RegistrationRepository registrationRepository = mock(RegistrationRepository.class);
-        TariffCrudRepository tariffCrudRepository = mock(TariffCrudRepository.class);
-        RegistrationController registrationController = new RegistrationController(configurationRepository, registrationRepository, tariffCrudRepository);
-
+    public void postRegisterGivenAlreadyExistingEntryShouldSendBadRequest()throws Exception {
         //given
-        Tariff t = new Tariff();
-        t.setBasicBid(BigDecimal.valueOf(2.0));
-        t.setExtendedBid(BigDecimal.valueOf(3.0));
-        t.setBasicPeriod(3.0);
-
         Registration reg = new Registration();
         reg.setRegistrationPlate("WAW120");
         reg.setTariffId((long) 1);
@@ -359,41 +329,37 @@ public class RegistrationTest {
 
         //when
         when(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc("WAW120")).thenReturn(Optional.of(reg));
-        when(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc("WAW121")).thenReturn(Optional.empty());
-        when(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc("WAW1234567890")).thenReturn(Optional.empty());
-        when(tariffCrudRepository.findTopByOrderByIdDesc()).thenReturn(t);
-        //then
-        /*
-        mockMvc = MockMvcBuilders.standaloneSetup(registrationController).build();
+
         MockHttpServletResponse response = mockMvc.perform(post("/register")
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW120\"}")
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_ACCEPTABLE.value());
-*/
 
-        mockMvc = MockMvcBuilders.standaloneSetup(registrationController).build();
+        //then
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.BAD_REQUEST.value());
+    }
+
+    @Test
+    public void postRegisterNotAlreadyExistingEntryShouldRegister()throws Exception {
+        //given
+        Tariff t = new Tariff();
+        t.setBasicBid(BigDecimal.valueOf(2.0));
+        t.setExtendedBid(BigDecimal.valueOf(3.0));
+        t.setBasicPeriod(3.0);
+
+        //when
+        when(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc("WAW121")).thenReturn(Optional.empty());
+        when(tariffCrudRepository.findTopByOrderByIdDesc()).thenReturn(t);
+
         MockHttpServletResponse response = mockMvc.perform(post("/register")
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW121\"}")
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
+        //then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         BDDMockito.verify(registrationRepository).save(Mockito.any(Registration.class));
-
-        response = mockMvc.perform(post("/register")
-                .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW120\"}")
-                .accept(MediaType.APPLICATION_JSON))
-                .andReturn().getResponse();
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.BAD_REQUEST.value());
-
-        response = mockMvc.perform(post("/register")
-                .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW1234567890\"}")
-                .accept(MediaType.APPLICATION_JSON))
-                .andReturn().getResponse();
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_ACCEPTABLE.value());
     }
 }
-
 
 class CheckoutResponse {
     private Double fee;
@@ -414,11 +380,13 @@ class CheckoutResponse {
     public void setArrival(String arrival) {
         arrival=arrival.replace('T',' ');
         arrival=arrival.substring(0,arrival.length()-4);
-        this.arrival = LocalDateTime.parse(arrival, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")); }
+        this.arrival = LocalDateTime.parse(arrival, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
     public void setDeparture(String departure) {
         departure=departure.replace('T',' ');
         departure=departure.substring(0,departure.length()-4);
-        this.departure = LocalDateTime.parse(departure, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")); }
+        this.departure = LocalDateTime.parse(departure, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
 }
 
 class StatisticsResponse {
