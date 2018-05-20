@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "CONFIGURATIONS")
 public class Configuration {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "NAME")

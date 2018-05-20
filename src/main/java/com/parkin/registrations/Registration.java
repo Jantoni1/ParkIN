@@ -11,10 +11,10 @@ import java.time.format.DateTimeFormatter;
 @Table(name = "REGISTRATIONS")
 public class Registration {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "REGISTRATION_PLATE")
+    @Column(name = "REGISTRATION_PLATE", length = 12)
     private String registrationPlate;
 
     @Convert(converter = LocalDateTimeConverter.class)
