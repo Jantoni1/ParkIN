@@ -72,6 +72,9 @@ function registerCar() {
                 case 400:
                     showAlert(false, messages.REGISTER_FAIL_CONFLICT);
                     break;
+                case 403:
+                    showAlert(false, messages.REGISTER_FAIL_FULL);
+                    break;
                 case 406:
                     showAlert(false, messages.REGISTER_FAIL_TOO_LONG);
                     break;

@@ -54,6 +54,10 @@ public class RegistrationController {
                 .isPresent()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        if(registrationRepository.countByDepartureIsNull()
+            .equals(configurationRepository.findByName("capacity").orElse(new Configuration()).getValue())) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         if(pRegistration.getRegistrationPlate().length() > 12) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
@@ -64,7 +68,7 @@ public class RegistrationController {
     @PostMapping("/checkout")
     public ResponseEntity<ImmutableMap<String, String>>carFeeLookup(@RequestBody Registration pRegistration) {
         Optional<Registration> registrationOptional = registrationRepository
-                .findTopByRegistrationPlateOrderByArrivalDesc(pRegistration.getRegistrationPlate());
+                .findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc(pRegistration.getRegistrationPlate());
         if(registrationOptional.isPresent()) {
             Registration registration = registrationOptional.get();
             Optional<Tariff> tariff = tariffCrudRepository.findOne(registration.getTariffId());

@@ -12,6 +12,8 @@ public interface RegistrationRepository extends Repository<Registration, Long> {
     @RestResource
     Registration save(Registration registration);
 
+    Integer countByDepartureIsNull();
+
     List<Registration> findAllByDepartureIsNull();
 
     Optional<Registration> findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc(String registrationPlate);
