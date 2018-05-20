@@ -50,13 +50,13 @@ public class RegistrationController {
 
     @PostMapping("/register")
     public ResponseEntity<Void> registerCar(@RequestBody Registration pRegistration) {
-        if(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc(pRegistration.getRegistrationPlate())
-                .isPresent()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
         if(registrationRepository.countByDepartureIsNull()
             .equals(configurationRepository.findByName("capacity").orElse(new Configuration()).getValue())) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+        if(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc(pRegistration.getRegistrationPlate())
+                .isPresent()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         if(pRegistration.getRegistrationPlate().length() > 12) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);

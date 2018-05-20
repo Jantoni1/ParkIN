@@ -244,7 +244,7 @@ public class RegistrationTest {
         request.setRegistrationPlate(correctPlate);
 
         //when
-        when(registrationRepository.findTopByRegistrationPlateOrderByArrivalDesc(correctPlate)).thenReturn(Optional.of(reg));
+        when(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc(correctPlate)).thenReturn(Optional.of(reg));
         when(tariffCrudRepository.findOne((long)1)).thenReturn(Optional.of(t));
 
         MockHttpServletResponse response = mockMvc.perform(post("/checkout")
@@ -262,7 +262,8 @@ public class RegistrationTest {
     @Test
     public void postCheckoutGivenNotExistingRegistrationPlateShouldSendNotFoundStatus()throws Exception {
         //when
-        when(registrationRepository.findTopByRegistrationPlateOrderByArrivalDesc("BI123")).thenReturn(Optional.empty());
+        when(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc("BI123")).thenReturn(Optional.empty());
+
         MockHttpServletResponse response = mockMvc.perform(post("/checkout")
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"BI123\"}")
                 .accept(MediaType.APPLICATION_JSON))
@@ -307,8 +308,14 @@ public class RegistrationTest {
 
     @Test
     public void postRegisterGivenTooLongPlateShouldSendNotAcceptable()throws Exception {
+        //given
+        Configuration configuration = new Configuration();
+        configuration.setName("capacity");
+        configuration.setValue(20);
+
         //when
         when(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc("WAW1234567890")).thenReturn(Optional.empty());
+        when(configurationRepository.findByName("capacity")).thenReturn(Optional.of(configuration));
 
         MockHttpServletResponse response = mockMvc.perform(post("/register")
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW1234567890\"}")
@@ -327,8 +334,13 @@ public class RegistrationTest {
         reg.setTariffId((long) 1);
         reg.setArrival(LocalDateTime.now().minusHours(3));
 
+        Configuration configuration = new Configuration();
+        configuration.setName("capacity");
+        configuration.setValue(20);
+
         //when
         when(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc("WAW120")).thenReturn(Optional.of(reg));
+        when(configurationRepository.findByName("capacity")).thenReturn(Optional.of(configuration));
 
         MockHttpServletResponse response = mockMvc.perform(post("/register")
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW120\"}")
@@ -340,16 +352,21 @@ public class RegistrationTest {
     }
 
     @Test
-    public void postRegisterNotAlreadyExistingEntryShouldRegister()throws Exception {
+    public void postRegisterGivenNotAlreadyExistingEntryShouldRegister()throws Exception {
         //given
         Tariff t = new Tariff();
         t.setBasicBid(BigDecimal.valueOf(2.0));
         t.setExtendedBid(BigDecimal.valueOf(3.0));
         t.setBasicPeriod(3.0);
 
+        Configuration configuration = new Configuration();
+        configuration.setName("capacity");
+        configuration.setValue(20);
+
         //when
         when(registrationRepository.findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc("WAW121")).thenReturn(Optional.empty());
         when(tariffCrudRepository.findTopByOrderByIdDesc()).thenReturn(t);
+        when(configurationRepository.findByName("capacity")).thenReturn(Optional.of(configuration));
 
         MockHttpServletResponse response = mockMvc.perform(post("/register")
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW121\"}")
@@ -358,6 +375,24 @@ public class RegistrationTest {
         //then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         BDDMockito.verify(registrationRepository).save(Mockito.any(Registration.class));
+    }
+
+    @Test
+    public void postRegisterGivenFullParkingShouldNotRegister()throws Exception {
+        Configuration configuration = new Configuration();
+        configuration.setName("capacity");
+        configuration.setValue(20);
+
+        //when
+        when(registrationRepository.countByDepartureIsNull()).thenReturn(configuration.getValue());
+        when(configurationRepository.findByName("capacity")).thenReturn(Optional.of(configuration));
+
+        MockHttpServletResponse response = mockMvc.perform(post("/register")
+            .contentType(MediaType.APPLICATION_JSON_VALUE).content("{\"registrationPlate\":\"WAW121\"}")
+            .accept(MediaType.APPLICATION_JSON))
+            .andReturn().getResponse();
+        //then
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.FORBIDDEN.value());
     }
 }
 
