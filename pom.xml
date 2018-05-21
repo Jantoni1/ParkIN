@@ -61,7 +61,7 @@
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
-            <artifactId>powermock-mockito-release-full</artifactId>
+            <artifactId>powermock-reflect</artifactId>
             <version>1.6.4</version>
         </dependency>
 
