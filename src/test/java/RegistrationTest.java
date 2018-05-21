@@ -211,7 +211,7 @@ public class RegistrationTest {
         when(registrationRepository.findAllByDepartureGreaterThan(time)).thenReturn(dep);
         when(tariffCrudRepository.findOne((long)1)).thenReturn(Optional.of(t));
 
-        MockHttpServletResponse response = mockMvc.perform(get("/statistics")
+        MockHttpServletResponse response = mockMvc.perform(get("/stats-day")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
