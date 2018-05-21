@@ -17,6 +17,7 @@ function getInput(inputElement, clear = false) {
 }
 
 function showAlert(success, text) {
+    $(document).scrollTop(0);
     let alertElement = success ? $(".alert-success") : $(".alert-danger");
     alertElement.find(".alertText").text(text);
     alertElement.fadeIn(500).delay(1000).fadeOut(500);

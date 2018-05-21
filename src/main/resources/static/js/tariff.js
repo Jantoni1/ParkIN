@@ -15,7 +15,7 @@ $(document).ready(() => {
                 dirty = true;
             }
         });
-        $("button").prop("disabled", !dirty).toggleClass("disabled", !dirty);
+        $("#submit").prop("disabled", !dirty).toggleClass("disabled", !dirty);
     });
 });
 
@@ -46,7 +46,7 @@ function postTariff() {
 }
 
 function setClean() {
-    $("button").prop("disabled", true).addClass("disabled");
+    $("#submit").prop("disabled", true).addClass("disabled");
     $(":input").each(function() {
         $(this).data("initialValue", $(this).val());
     });
