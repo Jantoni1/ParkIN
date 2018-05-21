@@ -23,4 +23,6 @@ public interface RegistrationRepository extends Repository<Registration, Long> {
     List<Registration> findAllByDepartureGreaterThan(LocalDateTime time);
 
     List<Registration> findAllByArrivalGreaterThan(LocalDateTime time);
+
+    List<Registration> findAllByDepartureBetween(LocalDateTime begin, LocalDateTime end);
 }

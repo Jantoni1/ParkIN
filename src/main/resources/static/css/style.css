@@ -48,3 +48,7 @@ form .input-group-append {
 .input-group .input-group-text {
     width: 100%;
 }
+
+.stats {
+    height: 300px;
+}

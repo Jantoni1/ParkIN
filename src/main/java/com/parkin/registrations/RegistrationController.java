@@ -14,11 +14,11 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.TimeZone;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 public class RegistrationController {
@@ -66,7 +66,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/checkout")
-    public ResponseEntity<ImmutableMap<String, String>>carFeeLookup(@RequestBody Registration pRegistration) {
+    public ResponseEntity<ImmutableMap<String, String>> carFeeLookup(@RequestBody Registration pRegistration) {
         Optional<Registration> registrationOptional = registrationRepository
                 .findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc(pRegistration.getRegistrationPlate());
         if(registrationOptional.isPresent()) {
@@ -85,7 +85,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/unregister")
-    public ResponseEntity<Void>  unregisterCar(@RequestBody Registration pRegistration) {
+    public ResponseEntity<Void> unregisterCar(@RequestBody Registration pRegistration) {
         Optional<Registration> registrationOptional = registrationRepository
                 .findTopByRegistrationPlateOrderByArrivalDesc(pRegistration.getRegistrationPlate());
         if(registrationOptional.isPresent()) {
@@ -97,8 +97,8 @@ public class RegistrationController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/statistics")
-    public ImmutableMap<String, String>getStatistics() {
+    @GetMapping("/stats-day")
+    public ImmutableMap<String, String> getDailyStatistics() {
         TimeZone.setDefault(TimeZone.getTimeZone("Europe/Warsaw"));
         LocalDateTime time = LocalDate.now().atStartOfDay();
         List<Registration> arrivals  = registrationRepository.findAllByArrivalGreaterThan(time);
@@ -110,10 +110,34 @@ public class RegistrationController {
             earnings = earnings.add(calculatePrice(registration, tariff, registration.getDeparture()));
         }
         return ImmutableMap.of("earnings", earnings.toString()
-                , "arrivals", Integer.toString(arrivals.size())
-                , "departures", Integer.toString(departures.size()));
+            , "arrivals", Integer.toString(arrivals.size())
+            , "departures", Integer.toString(departures.size()));
     }
 
+    @GetMapping("/stats-month")
+    public List<ImmutableMap<String, String>> getMonthlyStatistics() {
+        TimeZone.setDefault(TimeZone.getTimeZone("Europe/Warsaw"));
+
+        LocalDate start = LocalDate.now().withDayOfMonth(1);
+        LocalDate end = LocalDate.now();
+
+        return Stream.iterate(start, date -> date.plusDays(1))
+            .limit(ChronoUnit.DAYS.between(start, end) + 1)
+            .map(date -> ImmutableMap.of(
+                "date", date.toString(),
+                "earnings", registrationRepository
+                    .findAllByDepartureBetween(date.atStartOfDay(), date.atTime(LocalTime.MAX))
+                    .stream()
+                    .map(registration -> calculatePrice(
+                        registration,
+                        tariffCrudRepository.findOne(registration.getTariffId()).orElse(new Tariff()),
+                        registration.getDeparture()
+                    ))
+                    .reduce(BigDecimal.ZERO, BigDecimal::add)
+                    .toString()
+            ))
+            .collect(Collectors.toList());
+    }
 
     private Registration createRegistration(String registrationPlate) {
         Registration registration = new Registration();
