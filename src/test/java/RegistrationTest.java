@@ -27,9 +27,15 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.TimeZone;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -393,6 +399,85 @@ public class RegistrationTest {
             .andReturn().getResponse();
         //then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.FORBIDDEN.value());
+    }
+
+    @Test
+    public void getStatsMonthShouldReturnCorrectDataOnNotStartOfMonthDay() throws Exception {
+        //given
+        TimeZone.setDefault(TimeZone.getTimeZone("Europe/Warsaw"));
+        LocalDate startOfMonth = LocalDate.now().withDayOfMonth(1);
+        LocalDate today = LocalDate.now();
+        LocalTime time = LocalTime.of(8, 14);
+
+        Tariff t1 = new Tariff();
+        t1.setBasicBid(BigDecimal.valueOf(2.0));
+        t1.setExtendedBid(BigDecimal.valueOf(3.0));
+        t1.setBasicPeriod(3.0);
+
+        Tariff t2 = new Tariff();
+        t2.setBasicBid(BigDecimal.valueOf(4.0));
+        t2.setExtendedBid(BigDecimal.valueOf(3.0));
+        t2.setBasicPeriod(3.0);
+
+        List<Registration> list1 = new ArrayList<>();
+        List<Registration> list2 = new ArrayList<>();
+
+        Registration reg[] = new Registration[4];
+        for (int i = 0; i < 3; i++) {
+            reg[i] = new Registration();
+            reg[i].setRegistrationPlate("WAW120" + i);
+            reg[i].setTariffId((long) 1);
+            reg[i].setArrival(LocalDateTime.of(startOfMonth, time.plusHours(i * 2)));
+            reg[i].setDeparture(LocalDateTime.of(startOfMonth, time.plusHours((i + 1) * 2)));
+            list1.add(reg[i]);
+        }
+        reg[3] = new Registration();
+        reg[3].setRegistrationPlate("WAW120" + 3);
+        reg[3].setTariffId((long) 2);
+        reg[3].setArrival(LocalDateTime.of(today.minusDays(1), time));
+        reg[3].setDeparture(LocalDateTime.of(today, time.plusHours(4)));
+        list2.add(reg[3]);
+
+        //when
+        if (today.equals(startOfMonth)) {
+            list1.add(reg[3]);
+            when(registrationRepository.findAllByDepartureBetween(startOfMonth.atStartOfDay(), startOfMonth.atTime(LocalTime.MAX))).thenReturn(list1);
+        } else {
+            when(registrationRepository.findAllByDepartureBetween(startOfMonth.atStartOfDay(), startOfMonth.atTime(LocalTime.MAX))).thenReturn(list1);
+            when(registrationRepository.findAllByDepartureBetween(today.atStartOfDay(), today.atTime(LocalTime.MAX))).thenReturn(list2);
+        }
+
+        when(tariffCrudRepository.findOne((long) 1)).thenReturn(Optional.of(t1));
+        when(tariffCrudRepository.findOne((long) 2)).thenReturn(Optional.of(t2));
+
+        List<ImmutableMap<String, String>> expected;
+        if (today.equals(startOfMonth)) {
+            expected = Stream.iterate(startOfMonth, date -> date.plusDays(1))
+                    .limit(ChronoUnit.DAYS.between(startOfMonth, today) + 1)
+                    .map(date -> ImmutableMap.of(
+                            "date", date.toString(),
+                            "earnings", date.equals(startOfMonth) ? "99.00" : "0"
+                    ))
+                    .collect(Collectors.toList());
+        } else {
+            expected = Stream.iterate(startOfMonth, date -> date.plusDays(1))
+                    .limit(ChronoUnit.DAYS.between(startOfMonth, today) + 1)
+                    .map(date -> ImmutableMap.of(
+                            "date", date.toString(),
+                            "earnings", date.equals(startOfMonth) ? "12.00" : (date.equals(today) ? "87.00" : "0")
+                    ))
+                    .collect(Collectors.toList());
+        }
+        String expectedString = mapper.writeValueAsString(expected);
+
+
+        MockHttpServletResponse response = mockMvc.perform(get("/stats-month")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
+
+        //then
+        assertThat(response.getContentAsString()).isEqualTo(expectedString);
     }
 }
 
