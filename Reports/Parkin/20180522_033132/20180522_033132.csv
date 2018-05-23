@@ -1,0 +1,20 @@
+Suite/Test/Step Name,Browser,Description,Start time,End time,Duration,Status
+Parkin,,,2018-05-22 03:31:33,2018-05-22 03:31:35,"1,818s",FAILED
+,,,,,,
+Test Cases/givenStartingPageShouldBeAbleToChangeTariff,,,2018-05-22 03:31:33,2018-05-22 03:31:34,"0,657s",FAILED
+openBrowser,,,2018-05-22 03:31:33,2018-05-22 03:31:34,"0,407s",FAILED
+,,,,,,
+Test Cases/givenStartingPageShouldBeAbleToGoToStatistics,,,2018-05-22 03:31:34,2018-05-22 03:31:34,"0,196s",FAILED
+openBrowser,,,2018-05-22 03:31:34,2018-05-22 03:31:34,"0,015s",FAILED
+,,,,,,
+Test Cases/givenStartingPageShouldBeAbleToRegisterACarAndSeeConfirmation,,,2018-05-22 03:31:34,2018-05-22 03:31:34,"0,190s",FAILED
+openBrowser,,,2018-05-22 03:31:34,2018-05-22 03:31:34,"0,015s",FAILED
+,,,,,,
+Test Cases/givenStartingPageShouldBeAbleToRegisterCarAndReleaseIt,,,2018-05-22 03:31:34,2018-05-22 03:31:34,"0,194s",FAILED
+openBrowser,,,2018-05-22 03:31:34,2018-05-22 03:31:34,"0,029s",FAILED
+,,,,,,
+Test Cases/givenStartingPageShouldSeeErrorAfterTryingToReleaseSameCarTwice,,,2018-05-22 03:31:34,2018-05-22 03:31:34,"0,152s",FAILED
+openBrowser,,,2018-05-22 03:31:34,2018-05-22 03:31:34,"0,007s",FAILED
+,,,,,,
+Test Cases/givenStartingPageShouldSeeFullBannerAfterTryingToRegisterTooManyCars,,,2018-05-22 03:31:34,2018-05-22 03:31:35,"0,136s",FAILED
+openBrowser,,,2018-05-22 03:31:35,2018-05-22 03:31:35,"0,004s",FAILED

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>givenStartingPageShouldBeAbleToRegisterACarAndSeeConfirmation</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>c35c62db-b03a-4b74-9c2e-6119ba5fb228</testCaseGuid>
+</TestCaseEntity>

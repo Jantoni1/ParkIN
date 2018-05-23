@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>givenStartingPageShouldSeeErrorAfterTryingToReleaseSameCarTwice</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>74714ea7-6a11-4b21-86a2-90bd4b80bdf2</testCaseGuid>
+</TestCaseEntity>

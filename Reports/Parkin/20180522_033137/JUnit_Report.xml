@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Parkin" time="60" tests="6" failures="0" errors="0">
+   <testsuite name="Parkin" tests="6" failures="0" errors="0" time="60" timestamp="2018-05-22 03:31:38" hostname="Mikolaj - 192.168.0.13" id="Test Suites/Parkin">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Mikolaj\\Katalon Studio\\parkinTests\\Reports\\Parkin\\20180522_033137"/>
+         <property name="logFiles" value="C:\\Users\\Mikolaj\\Katalon Studio\\parkinTests\\Reports\\Parkin\\20180522_033137\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="Mikolaj - 192.168.0.13"/>
+         <property name="os" value="Windows 10 64bit"/>
+         <property name="katalonVersion" value="5.4.1.1"/>
+         <property name="browser" value="Chrome 66.0.3359.181"/>
+         <property name="hostAddress" value="192.168.0.13"/>
+         <property name="sessionId" value="551f8fb37905582ba9b3e9d49baff837"/>
+         <property name="seleniumVersion" value="3.7.1"/>
+         <property name="proxyInformation" value="ProxyInformation{proxyOption=NO_PROXY, proxyServerType=HTTP, password=, proxyServerAddress=, proxyServerPort=0}"/>
+         <property name="platform" value="Windows 10"/>
+      </properties>
+      <testcase name="Test Cases/givenStartingPageShouldBeAbleToChangeTariff" classname="Test Cases/givenStartingPageShouldBeAbleToChangeTariff" status="PASSED">
+         <system-out><![CDATA[2018-05-22 03:31:39 - [TEST_CASE][PASSED] - Test Cases/givenStartingPageShouldBeAbleToChangeTariff: Test Cases/givenStartingPageShouldBeAbleToChangeTariff
+
+2018-05-22 03:31:39 - [TEST_STEP][PASSED] - openBrowser: Browser is opened with url: ''
+
+2018-05-22 03:31:42 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2018-05-22 03:31:42 - [TEST_STEP][PASSED] - maximizeWindow: Current window maximized
+
+2018-05-22 03:31:43 - [MESSAGE][PASSED] - Current window maximized
+
+2018-05-22 03:31:43 - [TEST_STEP][PASSED] - navigateToUrl: Navigate to 'http://localhost:8080/' successfully
+
+2018-05-22 03:31:44 - [MESSAGE][PASSED] - Navigate to 'http://localhost:8080/' successfully
+
+2018-05-22 03:31:44 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/tariffChange/Page_ParkIN  home/a_Tariff' is clicked on
+
+2018-05-22 03:31:44 - [MESSAGE][PASSED] - Object: 'Object Repository/tariffChange/Page_ParkIN  home/a_Tariff' is clicked on
+
+2018-05-22 03:31:44 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/tariffChange/Page_ParkIN  tariff/span_Basic fee' is clicked on
+
+2018-05-22 03:31:44 - [MESSAGE][PASSED] - Object: 'Object Repository/tariffChange/Page_ParkIN  tariff/span_Basic fee' is clicked on
+
+2018-05-22 03:31:44 - [TEST_STEP][PASSED] - setText: Text '12' is set on object 'Object Repository/tariffChange/Page_ParkIN  tariff/input_basicFee'
+
+2018-05-22 03:31:44 - [MESSAGE][PASSED] - Text '12' is set on object 'Object Repository/tariffChange/Page_ParkIN  tariff/input_basicFee'
+
+2018-05-22 03:31:44 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/tariffChange/Page_ParkIN  tariff/span_Basic period' is clicked on
+
+2018-05-22 03:31:44 - [MESSAGE][PASSED] - Object: 'Object Repository/tariffChange/Page_ParkIN  tariff/span_Basic period' is clicked on
+
+2018-05-22 03:31:44 - [TEST_STEP][PASSED] - setText: Text '3' is set on object 'Object Repository/tariffChange/Page_ParkIN  tariff/input_basicPeriod'
+
+2018-05-22 03:31:44 - [MESSAGE][PASSED] - Text '3' is set on object 'Object Repository/tariffChange/Page_ParkIN  tariff/input_basicPeriod'
+
+2018-05-22 03:31:44 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/tariffChange/Page_ParkIN  tariff/span_Extended time fee' is clicked on
+
+2018-05-22 03:31:44 - [MESSAGE][PASSED] - Object: 'Object Repository/tariffChange/Page_ParkIN  tariff/span_Extended time fee' is clicked on
+
+2018-05-22 03:31:44 - [TEST_STEP][PASSED] - setText: Text '43' is set on object 'Object Repository/tariffChange/Page_ParkIN  tariff/input_extendedFee'
+
+2018-05-22 03:31:44 - [MESSAGE][PASSED] - Text '43' is set on object 'Object Repository/tariffChange/Page_ParkIN  tariff/input_extendedFee'
+
+2018-05-22 03:31:44 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/tariffChange/Page_ParkIN  tariff/button_Submit changes' is clicked on
+
+2018-05-22 03:31:44 - [MESSAGE][PASSED] - Object: 'Object Repository/tariffChange/Page_ParkIN  tariff/button_Submit changes' is clicked on
+
+2018-05-22 03:31:44 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/tariffChange/Page_ParkIN  tariff/span_Tariff successfully updat' is clicked on
+
+2018-05-22 03:31:45 - [MESSAGE][PASSED] - Object: 'Object Repository/tariffChange/Page_ParkIN  tariff/span_Tariff successfully updat' is clicked on
+
+2018-05-22 03:31:45 - [TEST_STEP][PASSED] - closeBrowser: Browser is closed
+
+2018-05-22 03:31:46 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/givenStartingPageShouldBeAbleToGoToStatistics" classname="Test Cases/givenStartingPageShouldBeAbleToGoToStatistics" status="PASSED">
+         <system-out><![CDATA[2018-05-22 03:31:46 - [TEST_CASE][PASSED] - Test Cases/givenStartingPageShouldBeAbleToGoToStatistics: Test Cases/givenStartingPageShouldBeAbleToGoToStatistics
+
+2018-05-22 03:31:46 - [TEST_STEP][PASSED] - openBrowser: Browser is opened with url: ''
+
+2018-05-22 03:31:48 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2018-05-22 03:31:48 - [TEST_STEP][PASSED] - maximizeWindow: Current window maximized
+
+2018-05-22 03:31:49 - [MESSAGE][PASSED] - Current window maximized
+
+2018-05-22 03:31:49 - [TEST_STEP][PASSED] - navigateToUrl: Navigate to 'http://localhost:8080/' successfully
+
+2018-05-22 03:31:50 - [MESSAGE][PASSED] - Navigate to 'http://localhost:8080/' successfully
+
+2018-05-22 03:31:50 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/navigatingToStatistics/Page_ParkIN  home/a_Statistics' is clicked on
+
+2018-05-22 03:31:50 - [MESSAGE][PASSED] - Object: 'Object Repository/navigatingToStatistics/Page_ParkIN  home/a_Statistics' is clicked on
+
+2018-05-22 03:31:50 - [TEST_STEP][PASSED] - closeBrowser: Browser is closed
+
+2018-05-22 03:31:51 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/givenStartingPageShouldBeAbleToRegisterACarAndSeeConfirmation" classname="Test Cases/givenStartingPageShouldBeAbleToRegisterACarAndSeeConfirmation" status="PASSED">
+         <system-out><![CDATA[2018-05-22 03:31:51 - [TEST_CASE][PASSED] - Test Cases/givenStartingPageShouldBeAbleToRegisterACarAndSeeConfirmation: Test Cases/givenStartingPageShouldBeAbleToRegisterACarAndSeeConfirmation
+
+2018-05-22 03:31:51 - [TEST_STEP][PASSED] - openBrowser: Browser is opened with url: ''
+
+2018-05-22 03:31:53 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2018-05-22 03:31:53 - [TEST_STEP][PASSED] - maximizeWindow: Current window maximized
+
+2018-05-22 03:31:54 - [MESSAGE][PASSED] - Current window maximized
+
+2018-05-22 03:31:54 - [TEST_STEP][PASSED] - navigateToUrl: Navigate to 'http://localhost:8080/' successfully
+
+2018-05-22 03:31:55 - [MESSAGE][PASSED] - Navigate to 'http://localhost:8080/' successfully
+
+2018-05-22 03:31:55 - [TEST_STEP][PASSED] - setText: Text 'abcd' is set on object 'Object Repository/carRegistration/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:31:55 - [MESSAGE][PASSED] - Text 'abcd' is set on object 'Object Repository/carRegistration/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:31:55 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/carRegistration/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:31:55 - [MESSAGE][PASSED] - Object: 'Object Repository/carRegistration/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:31:55 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/carRegistration/Page_ParkIN  home/span_Car registration successf' is clicked on
+
+2018-05-22 03:31:55 - [MESSAGE][PASSED] - Object: 'Object Repository/carRegistration/Page_ParkIN  home/span_Car registration successf' is clicked on
+
+2018-05-22 03:31:55 - [TEST_STEP][PASSED] - closeBrowser: Browser is closed
+
+2018-05-22 03:31:56 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/givenStartingPageShouldBeAbleToRegisterCarAndReleaseIt" classname="Test Cases/givenStartingPageShouldBeAbleToRegisterCarAndReleaseIt" status="PASSED">
+         <system-out><![CDATA[2018-05-22 03:31:56 - [TEST_CASE][PASSED] - Test Cases/givenStartingPageShouldBeAbleToRegisterCarAndReleaseIt: Test Cases/givenStartingPageShouldBeAbleToRegisterCarAndReleaseIt
+
+2018-05-22 03:31:56 - [TEST_STEP][PASSED] - openBrowser: Browser is opened with url: ''
+
+2018-05-22 03:31:58 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2018-05-22 03:31:58 - [TEST_STEP][PASSED] - maximizeWindow: Current window maximized
+
+2018-05-22 03:31:59 - [MESSAGE][PASSED] - Current window maximized
+
+2018-05-22 03:31:59 - [TEST_STEP][PASSED] - navigateToUrl: Navigate to 'http://localhost:8080/' successfully
+
+2018-05-22 03:32:00 - [MESSAGE][PASSED] - Navigate to 'http://localhost:8080/' successfully
+
+2018-05-22 03:32:00 - [TEST_STEP][PASSED] - setText: Text 'ab' is set on object 'Object Repository/registeringThenReleasingACar/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:00 - [MESSAGE][PASSED] - Text 'ab' is set on object 'Object Repository/registeringThenReleasingACar/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:00 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringThenReleasingACar/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:00 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringThenReleasingACar/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:00 - [TEST_STEP][PASSED] - setText: Text 'ab' is set on object 'Object Repository/registeringThenReleasingACar/Page_ParkIN  home/input_checkoutInput'
+
+2018-05-22 03:32:00 - [MESSAGE][PASSED] - Text 'ab' is set on object 'Object Repository/registeringThenReleasingACar/Page_ParkIN  home/input_checkoutInput'
+
+2018-05-22 03:32:00 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringThenReleasingACar/Page_ParkIN  home/button_Checkout' is clicked on
+
+2018-05-22 03:32:00 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringThenReleasingACar/Page_ParkIN  home/button_Checkout' is clicked on
+
+2018-05-22 03:32:00 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:01 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:01 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringThenReleasingACar/Page_ParkIN  home/button_Release' is clicked on
+
+2018-05-22 03:32:02 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringThenReleasingACar/Page_ParkIN  home/button_Release' is clicked on
+
+2018-05-22 03:32:02 - [TEST_STEP][PASSED] - closeBrowser: Browser is closed
+
+2018-05-22 03:32:02 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/givenStartingPageShouldSeeErrorAfterTryingToReleaseSameCarTwice" classname="Test Cases/givenStartingPageShouldSeeErrorAfterTryingToReleaseSameCarTwice" status="PASSED">
+         <system-out><![CDATA[2018-05-22 03:32:02 - [TEST_CASE][PASSED] - Test Cases/givenStartingPageShouldSeeErrorAfterTryingToReleaseSameCarTwice: Test Cases/givenStartingPageShouldSeeErrorAfterTryingToReleaseSameCarTwice
+
+2018-05-22 03:32:03 - [TEST_STEP][PASSED] - openBrowser: Browser is opened with url: ''
+
+2018-05-22 03:32:05 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2018-05-22 03:32:05 - [TEST_STEP][PASSED] - maximizeWindow: Current window maximized
+
+2018-05-22 03:32:06 - [MESSAGE][PASSED] - Current window maximized
+
+2018-05-22 03:32:06 - [TEST_STEP][PASSED] - navigateToUrl: Navigate to 'http://localhost:8080/' successfully
+
+2018-05-22 03:32:06 - [MESSAGE][PASSED] - Navigate to 'http://localhost:8080/' successfully
+
+2018-05-22 03:32:06 - [TEST_STEP][PASSED] - setText: Text 'cd' is set on object 'Object Repository/badRelease/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:06 - [MESSAGE][PASSED] - Text 'cd' is set on object 'Object Repository/badRelease/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:06 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/badRelease/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:06 - [MESSAGE][PASSED] - Object: 'Object Repository/badRelease/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:06 - [TEST_STEP][PASSED] - setText: Text 'cd' is set on object 'Object Repository/badRelease/Page_ParkIN  home/input_checkoutInput'
+
+2018-05-22 03:32:07 - [MESSAGE][PASSED] - Text 'cd' is set on object 'Object Repository/badRelease/Page_ParkIN  home/input_checkoutInput'
+
+2018-05-22 03:32:07 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/badRelease/Page_ParkIN  home/button_Checkout' is clicked on
+
+2018-05-22 03:32:07 - [MESSAGE][PASSED] - Object: 'Object Repository/badRelease/Page_ParkIN  home/button_Checkout' is clicked on
+
+2018-05-22 03:32:07 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:08 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:08 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/badRelease/Page_ParkIN  home/button_Release' is clicked on
+
+2018-05-22 03:32:08 - [MESSAGE][PASSED] - Object: 'Object Repository/badRelease/Page_ParkIN  home/button_Release' is clicked on
+
+2018-05-22 03:32:08 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:09 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:09 - [TEST_STEP][PASSED] - setText: Text 'cd' is set on object 'Object Repository/badRelease/Page_ParkIN  home/input_checkoutInput'
+
+2018-05-22 03:32:09 - [MESSAGE][PASSED] - Text 'cd' is set on object 'Object Repository/badRelease/Page_ParkIN  home/input_checkoutInput'
+
+2018-05-22 03:32:09 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/badRelease/Page_ParkIN  home/button_Checkout' is clicked on
+
+2018-05-22 03:32:09 - [MESSAGE][PASSED] - Object: 'Object Repository/badRelease/Page_ParkIN  home/button_Checkout' is clicked on
+
+2018-05-22 03:32:09 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/badRelease/Page_ParkIN  home/div_Invalid registration plate' is clicked on
+
+2018-05-22 03:32:09 - [MESSAGE][PASSED] - Object: 'Object Repository/badRelease/Page_ParkIN  home/div_Invalid registration plate' is clicked on
+
+2018-05-22 03:32:09 - [TEST_STEP][PASSED] - closeBrowser: Browser is closed
+
+2018-05-22 03:32:10 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/givenStartingPageShouldSeeFullBannerAfterTryingToRegisterTooManyCars" classname="Test Cases/givenStartingPageShouldSeeFullBannerAfterTryingToRegisterTooManyCars" status="PASSED">
+         <system-out><![CDATA[2018-05-22 03:32:10 - [TEST_CASE][PASSED] - Test Cases/givenStartingPageShouldSeeFullBannerAfterTryingToRegisterTooManyCars: Test Cases/givenStartingPageShouldSeeFullBannerAfterTryingToRegisterTooManyCars
+
+2018-05-22 03:32:10 - [TEST_STEP][PASSED] - openBrowser: Browser is opened with url: ''
+
+2018-05-22 03:32:12 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2018-05-22 03:32:12 - [TEST_STEP][PASSED] - maximizeWindow: Current window maximized
+
+2018-05-22 03:32:13 - [MESSAGE][PASSED] - Current window maximized
+
+2018-05-22 03:32:13 - [TEST_STEP][PASSED] - navigateToUrl: Navigate to 'http://localhost:8080/' successfully
+
+2018-05-22 03:32:14 - [MESSAGE][PASSED] - Navigate to 'http://localhost:8080/' successfully
+
+2018-05-22 03:32:14 - [TEST_STEP][PASSED] - Statement - For (def index : (0..21)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:14 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:14 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:15 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:15 - [TEST_STEP][PASSED] - setText: Text '0' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:15 - [MESSAGE][PASSED] - Text '0' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:15 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:15 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:15 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:15 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:16 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:16 - [TEST_STEP][PASSED] - setText: Text '1' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:16 - [MESSAGE][PASSED] - Text '1' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:16 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:16 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:16 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:16 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:17 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:17 - [TEST_STEP][PASSED] - setText: Text '2' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:17 - [MESSAGE][PASSED] - Text '2' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:17 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:17 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:17 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:17 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:18 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:18 - [TEST_STEP][PASSED] - setText: Text '3' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:18 - [MESSAGE][PASSED] - Text '3' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:18 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:18 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:18 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:18 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:19 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:19 - [TEST_STEP][PASSED] - setText: Text '4' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:19 - [MESSAGE][PASSED] - Text '4' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:19 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:19 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:19 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:19 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:20 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:20 - [TEST_STEP][PASSED] - setText: Text '5' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:20 - [MESSAGE][PASSED] - Text '5' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:20 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:20 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:20 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:20 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:21 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:21 - [TEST_STEP][PASSED] - setText: Text '6' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:22 - [MESSAGE][PASSED] - Text '6' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:22 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:22 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:22 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:22 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:23 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:23 - [TEST_STEP][PASSED] - setText: Text '7' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:23 - [MESSAGE][PASSED] - Text '7' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:23 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:23 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:23 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:23 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:24 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:24 - [TEST_STEP][PASSED] - setText: Text '8' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:24 - [MESSAGE][PASSED] - Text '8' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:24 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:24 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:24 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:24 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:25 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:25 - [TEST_STEP][PASSED] - setText: Text '9' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:25 - [MESSAGE][PASSED] - Text '9' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:25 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:25 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:25 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:25 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:26 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:26 - [TEST_STEP][PASSED] - setText: Text '10' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:26 - [MESSAGE][PASSED] - Text '10' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:26 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:26 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:26 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:26 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:27 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:27 - [TEST_STEP][PASSED] - setText: Text '11' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:27 - [MESSAGE][PASSED] - Text '11' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:27 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:27 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:27 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:27 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:28 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:28 - [TEST_STEP][PASSED] - setText: Text '12' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:28 - [MESSAGE][PASSED] - Text '12' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:28 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:28 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:28 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:28 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:29 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:29 - [TEST_STEP][PASSED] - setText: Text '13' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:29 - [MESSAGE][PASSED] - Text '13' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:29 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:29 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:29 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:29 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:30 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:30 - [TEST_STEP][PASSED] - setText: Text '14' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:31 - [MESSAGE][PASSED] - Text '14' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:31 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:31 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:31 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:31 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:32 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:32 - [TEST_STEP][PASSED] - setText: Text '15' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:32 - [MESSAGE][PASSED] - Text '15' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:32 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:32 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:32 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:32 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:33 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:33 - [TEST_STEP][PASSED] - setText: Text '16' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:33 - [MESSAGE][PASSED] - Text '16' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:33 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:33 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:33 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:33 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:34 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:34 - [TEST_STEP][PASSED] - setText: Text '17' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:34 - [MESSAGE][PASSED] - Text '17' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:34 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:34 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:34 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:34 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:35 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:35 - [TEST_STEP][PASSED] - setText: Text '18' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:35 - [MESSAGE][PASSED] - Text '18' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:35 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:35 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:35 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:35 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:36 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:36 - [TEST_STEP][PASSED] - setText: Text '19' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:36 - [MESSAGE][PASSED] - Text '19' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:36 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:36 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:36 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:36 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:37 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:37 - [TEST_STEP][PASSED] - setText: Text '20' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:37 - [MESSAGE][PASSED] - Text '20' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:37 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:37 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:37 - [TEST_STEP][PASSED] - Statement - If (com.kms.katalon.core.testobject.ObjectRepository.findTestObject(Object Repository/registeringTooManyCars/Page_ParkIN  home/span_Full)): Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:37 - [TEST_STEP][PASSED] - delay: Delayed 1 second(s)
+
+2018-05-22 03:32:38 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2018-05-22 03:32:38 - [TEST_STEP][PASSED] - setText: Text '21' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:38 - [MESSAGE][PASSED] - Text '21' is set on object 'Object Repository/registeringTooManyCars/Page_ParkIN  home/input_registerInput'
+
+2018-05-22 03:32:38 - [TEST_STEP][PASSED] - click: Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:38 - [MESSAGE][PASSED] - Object: 'Object Repository/registeringTooManyCars/Page_ParkIN  home/button_Register new car' is clicked on
+
+2018-05-22 03:32:38 - [TEST_STEP][PASSED] - closeBrowser: Browser is closed
+
+2018-05-22 03:32:39 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2018-05-22 03:31:38 - [TEST_SUITE][PASSED] - Parkin: Test Cases/givenStartingPageShouldSeeFullBannerAfterTryingToRegisterTooManyCars]]></system-out>
+      <system-err><![CDATA[]]></system-err>
+   </testsuite>
+</testsuites>

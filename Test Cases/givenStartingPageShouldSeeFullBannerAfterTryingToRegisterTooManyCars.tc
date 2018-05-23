@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>givenStartingPageShouldSeeFullBannerAfterTryingToRegisterTooManyCars</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>dfad136b-9110-430b-83ff-d6694f9a5964</testCaseGuid>
+</TestCaseEntity>
