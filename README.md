@@ -57,9 +57,9 @@ Simple CRUD app which helps parking space owners manage the parking space.
 ## Quick start guide
 To start using the application you have to:
 * Download and install PostgreSQL 9.x and create database "parkin"
-* Clone or download latest version from [GitHub](https://github.com/Jantoni1/ParkIN) and import project into Intellij IDEA
+* Clone or download latest version from [GitHub](https://github.com/Jantoni1/ParkIN) and import project into IntelliJ IDEA
 * Edit these lines in configuration file (application.properties)
-```
+```properties
 #web interface port
 server.port=80
 #database URL
@@ -70,7 +70,7 @@ spring.datasource.username=your_login
 spring.datasource.password=your_password
 ```
 * Setup your parking lot by editing default database entries inside data.sql file
-```
+```sql
 --values: 0, fee/h (basic period), basic period, fee/h (extended period)
 insert into tariffs values(0, 10, 2, 8) on conflict do nothing;
 --values: 0, 'capacity', parking lot capacity
