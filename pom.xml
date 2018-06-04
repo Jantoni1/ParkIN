@@ -86,14 +86,14 @@
         </profile>
         <profile>
             <id>jenkins</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
             <!--<activation>-->
-                <!--<property>-->
-                    <!--<name>env.BUILD_NUMBER</name>-->
-                <!--</property>-->
+                <!--<activeByDefault>false</activeByDefault>-->
             <!--</activation>-->
+            <activation>
+                <property>
+                    <name>env.BUILD_NUMBER</name>
+                </property>
+            </activation>
             <build>
                 <plugins>
                     <plugin>
