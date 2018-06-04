@@ -3,8 +3,21 @@ let chartHandler;
 $(document).ready(() => {
     prepareChart();
     updateOccupancy();
+
     $("#registerButton").click(registerCar);
+    $("#registerInput").keyup((event) => {
+        if (event.keyCode === 13) {
+            registerCar();
+        }
+    });
+
     $("#checkoutButton").click(checkOut);
+    $("#checkoutInput").keyup((event) => {
+        if (event.keyCode === 13) {
+            checkOut();
+        }
+    });
+
     $("#cancelReleaseButton").click(hideTicket);
     $("#releaseButton").click(release);
 });
@@ -54,8 +67,18 @@ function registerCar() {
             showAlert(true, messages.REGISTER_SUCCESS);
             updateOccupancy();
         },
-        error: () => {
-            showAlert(false, messages.REGISTER_FAIL);
+        error: jqXHR => {
+            switch (jqXHR.status) {
+                case 400:
+                    showAlert(false, messages.REGISTER_FAIL_CONFLICT);
+                    break;
+                case 403:
+                    showAlert(false, messages.REGISTER_FAIL_FULL);
+                    break;
+                case 406:
+                    showAlert(false, messages.REGISTER_FAIL_TOO_LONG);
+                    break;
+            }
         }
     });
 }

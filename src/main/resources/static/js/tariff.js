@@ -8,6 +8,15 @@ $(document).ready(() => {
             postTariff();
         }
     });
+    $(":input").bind("keyup mouseup", () => {
+        let dirty = false;
+        $(":input").each(function() {
+            if ($(this).data("initialValue") !== $(this).val()) {
+                dirty = true;
+            }
+        });
+        $("#submit").prop("disabled", !dirty).toggleClass("disabled", !dirty);
+    });
 });
 
 function getTariff() {
@@ -15,6 +24,7 @@ function getTariff() {
         $("#basicFee").val(response.basicBid);
         $("#basicPeriod").val(response.basicPeriod);
         $("#extendedFee").val(response.extendedBid);
+        setClean();
     });
 }
 
@@ -24,12 +34,20 @@ function postTariff() {
         contentType: "application/json",
         url: "tariff-data",
         data: JSON.stringify({
-            basicBid: getInput($("#basicFee")),
-            basicPeriod: getInput($("#basicPeriod")),
-            extendedBid: getInput($("#extendedFee"))
+            basicBid: $("#basicFee").val(),
+            basicPeriod: $("#basicPeriod").val(),
+            extendedBid: $("#extendedFee").val()
         }),
         success: () => {
+            setClean();
             showAlert(true, messages.TARIFF_SUCCESS);
         }
+    });
+}
+
+function setClean() {
+    $("#submit").prop("disabled", true).addClass("disabled");
+    $(":input").each(function() {
+        $(this).data("initialValue", $(this).val());
     });
 }

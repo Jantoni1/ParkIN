@@ -12,6 +12,8 @@ public interface RegistrationRepository extends Repository<Registration, Long> {
     @RestResource
     Registration save(Registration registration);
 
+    Integer countByDepartureIsNull();
+
     List<Registration> findAllByDepartureIsNull();
 
     Optional<Registration> findTopByRegistrationPlateAndDepartureIsNullOrderByArrivalDesc(String registrationPlate);
@@ -21,4 +23,6 @@ public interface RegistrationRepository extends Repository<Registration, Long> {
     List<Registration> findAllByDepartureGreaterThan(LocalDateTime time);
 
     List<Registration> findAllByArrivalGreaterThan(LocalDateTime time);
+
+    List<Registration> findAllByDepartureBetween(LocalDateTime begin, LocalDateTime end);
 }

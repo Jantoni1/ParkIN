@@ -37,14 +37,30 @@ body {
     z-index: 1;
 }
 
-form .input-group-prepend {
-    min-width: 155px;
-}
-
-form .input-group-append {
-    min-width: 100px;
-}
-
 .input-group .input-group-text {
     width: 100%;
+}
+
+.stats {
+    height: 300px;
+}
+
+@media (max-width: 1100px) {
+    form .input-group-prepend {
+        width: 100%;
+    }
+
+    form .input-group-append {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1100px) {
+    form .input-group-prepend {
+        min-width: 155px;
+    }
+
+    form .input-group-append {
+        min-width: 100px;
+    }
 }

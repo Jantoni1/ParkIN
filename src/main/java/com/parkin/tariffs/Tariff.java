@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 @Table(name = "TARIFFS")
 public class Tariff {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "BASIC_BID", precision = 8, scale = 2)
@@ -46,4 +46,5 @@ public class Tariff {
     public void setExtendedBid(BigDecimal extendedBid) {
         this.extendedBid = extendedBid;
     }
+
 }

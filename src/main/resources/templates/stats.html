@@ -8,9 +8,15 @@
 <div layout:fragment="content">
     <div class="jumbotron jumbotron-fluid element">
         <h1>Daily statistics</h1>
-        <p class="lead"><span class="fa fa-money-bill-wave"></span> Daily earnings: <strong><span id="dailyEarnings"></span> &euro;</strong></p>
+        <p class="lead"><span class="fa fa-money-bill-wave"></span> Earnings: <strong><span id="dailyEarnings"></span> &euro;</strong></p>
         <p class="lead"><span class="fa fa-sign-in-alt"></span> Arrivals: <strong><span id="arrivals"></span></strong></p>
         <p class="lead"><span class="fa fa-sign-out-alt"></span> Departures: <strong><span id="departures"></span></strong></p>
+    </div>
+    <div class="jumbotron jumbotron-fluid element">
+        <h1>Monthly statistics</h1>
+        <div class="stats">
+            <canvas id="chart"></canvas>
+        </div>
     </div>
 </div>
 </body>

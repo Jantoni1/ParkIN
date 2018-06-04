@@ -1,7 +1,9 @@
 const messages = {
     TARIFF_SUCCESS: "Tariff successfully updated",
     REGISTER_SUCCESS: "Car registration successful",
-    REGISTER_FAIL: "Car registration failed",
+    REGISTER_FAIL_TOO_LONG: "Registration plate cannot exceed 12 characters",
+    REGISTER_FAIL_CONFLICT: "Car is already registered",
+    REGISTER_FAIL_FULL: "Parking lot is already full",
     CHECKOUT_FAIL: "Invalid registration plate",
     RELEASE_SUCCESS: "Payment registered"
 };
@@ -15,6 +17,7 @@ function getInput(inputElement, clear = false) {
 }
 
 function showAlert(success, text) {
+    $(document).scrollTop(0);
     let alertElement = success ? $(".alert-success") : $(".alert-danger");
     alertElement.find(".alertText").text(text);
     alertElement.fadeIn(500).delay(1000).fadeOut(500);
