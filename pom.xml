@@ -148,11 +148,21 @@
                             <formats>
                                 <format>xml</format>
                             </formats>
+                            <check>
+                                <branchRate>100</branchRate>
+                                <lineRate>100</lineRate>
+                                <haltOnFailure>true</haltOnFailure>
+                                <totalBranchRate>100</totalBranchRate>
+                                <totalLineRate>100</totalLineRate>
+                                <packageLineRate>100</packageLineRate>
+                                <packageBranchRate>100</packageBranchRate>
+                            </check>
                         </configuration>
                         <executions>
                             <execution>
                                 <phase>package</phase>
                                 <goals>
+                                    <goal>check</goal>
                                     <goal>cobertura</goal>
                                 </goals>
                             </execution>
