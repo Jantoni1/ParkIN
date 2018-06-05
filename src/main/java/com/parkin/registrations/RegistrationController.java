@@ -139,6 +139,12 @@ public class RegistrationController {
             .collect(Collectors.toList());
     }
 
+    @GetMapping("/reset-all")
+    public ResponseEntity<Void> reset() {
+        registrationRepository.deleteAllByDepartureIsNull();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     private Registration createRegistration(String registrationPlate) {
         Registration registration = new Registration();
         registration.setRegistrationPlate(registrationPlate);

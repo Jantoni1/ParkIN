@@ -5,7 +5,8 @@ const messages = {
     REGISTER_FAIL_CONFLICT: "Car is already registered",
     REGISTER_FAIL_FULL: "Parking lot is already full",
     CHECKOUT_FAIL: "Invalid registration plate",
-    RELEASE_SUCCESS: "Payment registered"
+    RELEASE_SUCCESS: "Payment registered",
+    RESET_SUCCESS: "All car entries removed"
 };
 
 function getInput(inputElement, clear = false) {

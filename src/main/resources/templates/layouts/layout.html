@@ -34,6 +34,9 @@
                     <li class="nav-item mx-1" th:classappend="${activeTab == 'stats'}? 'active' : null">
                         <a class="nav-link" th:href="@{/stats}"><span class="fa fa-chart-bar"></span> Statistics</a>
                     </li>
+                    <li class="nav-item mx-1" th:classappend="${activeTab == 'reset'}? 'active' : null">
+                        <a class="nav-link" th:href="@{/reset}"><span class="fa fa-undo"></span> Reset</a>
+                    </li>
                 </ul>
             </div>
         </div>

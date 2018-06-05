@@ -21,4 +21,8 @@ public class HTMLProviderController {
         return "stats";
     }
 
+    @RequestMapping("/reset")
+    public String resetHTML() {
+        return "reset";
+    }
 }
