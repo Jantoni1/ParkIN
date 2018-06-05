@@ -24,7 +24,7 @@ Simple CRUD app which helps parking space owners manage the parking space.
 * Access to static content using URLs
 * Uses REST for dynamic content
 * Server sends JSON messages in response to frontend’s requests
-* Application data is stored in relational database (PostgreSQL)
+* Application data is stored in relational database (PostgreSQL or other similar, we're using H2 for presentational purposes)
 
 **Frontend architecture description**
 * Connected with backend via JSON messages
