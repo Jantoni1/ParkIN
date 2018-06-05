@@ -228,6 +228,7 @@ public class RegistrationTest {
         assertThat(res.getEarnings()).isEqualTo(4.0);
         assertThat(res.getArrivals()).isEqualTo(3);
         assertThat(res.getDepartures()).isEqualTo(1);
+        assertThat(res.getForecasts()).isEqualTo(0.0);
     }
 
     //Rest POST tests
@@ -517,6 +518,7 @@ class StatisticsResponse {
     private Double earnings;
     private Integer arrivals;
     private Integer departures;
+    private Double forecast;
 
     public Double getEarnings() {
         return earnings;
@@ -540,5 +542,13 @@ class StatisticsResponse {
 
     public void setDepartures(int e) {
         this.departures = e;
+    }
+
+    public Double getForecasts() {
+        return forecast;
+    }
+
+    public void setForecast(Double e) {
+        this.forecast = e;
     }
 }
