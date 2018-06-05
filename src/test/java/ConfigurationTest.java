@@ -29,7 +29,7 @@ public class ConfigurationTest {
         ldt = LocalDateTime.now();
         ts = Timestamp.valueOf(ldt.withNano(0));
 
-        assertThat(converter.convertToDatabaseColumn(ldt)).isEqualTo(null);
+        assertThat(converter.convertToDatabaseColumn(ldt)).isEqualTo(ts);
     }
 
     @Test
