@@ -16,6 +16,8 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import static junit.framework.TestCase.assertNull;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -33,12 +35,11 @@ public class ConfigurationTest {
         ts =  Timestamp.valueOf(ldt.withNano(0));
 
         assertThat(c.convertToDatabaseColumn(ldt)).isEqualTo(ts);
-        assertThat(c.convertToDatabaseColumn(null)).isEqualTo(null);
     }
 
     @Test
     public void givenNotValidLdtShouldReturnNull() throws Exception {
-        assertThat(c.convertToDatabaseColumn(null)).isEqualTo(null);
+        assertNull(c.convertToDatabaseColumn(null));
     }
 
     @Test
@@ -47,12 +48,11 @@ public class ConfigurationTest {
         Timestamp ts =Timestamp.valueOf(ldt);
 
         assertThat(c.convertToEntityAttribute(ts)).isEqualTo(ldt);
-        assertThat(c.convertToEntityAttribute(null)).isEqualTo(null);
     }
 
     @Test
     public void givenNotValidTimestampShouldReturnNull() throws Exception {
-        assertThat(c.convertToEntityAttribute(null)).isEqualTo(null);
+        assertNull(c.convertToEntityAttribute(null));
     }
 }
 
