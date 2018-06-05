@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/layout" th:with="activeTab='reset'">
+<head>
+    <title>statistics</title>
+    <script type="text/javascript" th:src="@{/js/reset.js}"></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:replace="fragments/alert :: alert"></div>
+    <div class="jumbotron jumbotron-fluid element">
+        <h1>Remove all car entries</h1>
+        <button class="btn btn-danger" type="submit" id="reset">Reset</button>
+    </div>
+</div>
+</body>
+</html>
