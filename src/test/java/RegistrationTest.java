@@ -487,25 +487,29 @@ class CheckoutResponse {
     private LocalDateTime arrival;
     private LocalDateTime departure;
     private Long tariffId;
-    public Double getFee() { return fee; }
+
+    public Double getFee() {
+        return fee;
+    }
+
     public void setFee(Double fee) {
         this.fee = fee;
     }
+
     public String getRegistrationPlate() {
         return registrationPlate;
     }
+
     public void setRegistrationPlate(String registrationPlate) {
         this.registrationPlate = registrationPlate;
     }
+
     public void setArrival(String arrival) {
-        arrival=arrival.replace('T',' ');
-        arrival=arrival.substring(0,arrival.length()-4);
-        this.arrival = LocalDateTime.parse(arrival, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        this.arrival = LocalDateTime.parse(arrival, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     }
+
     public void setDeparture(String departure) {
-        departure=departure.replace('T',' ');
-        departure=departure.substring(0,departure.length()-4);
-        this.departure = LocalDateTime.parse(departure, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        this.departure = LocalDateTime.parse(departure, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     }
 }
 
@@ -513,12 +517,28 @@ class StatisticsResponse {
     private Double earnings;
     private Integer arrivals;
     private Integer departures;
-    public Double getEarnings() { return earnings; }
+
+    public Double getEarnings() {
+        return earnings;
+    }
+
     public void setEarnings(Double e) {
         this.earnings = e;
     }
-    public Integer getArrivals() { return arrivals; }
-    public void setArrivals(int e) { this.arrivals = e; }
-    public Integer getDepartures() { return departures; }
-    public void setDepartures(int e) { this.departures = e; }
+
+    public Integer getArrivals() {
+        return arrivals;
+    }
+
+    public void setArrivals(int e) {
+        this.arrivals = e;
+    }
+
+    public Integer getDepartures() {
+        return departures;
+    }
+
+    public void setDepartures(int e) {
+        this.departures = e;
+    }
 }
