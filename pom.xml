@@ -149,13 +149,13 @@
                                 <format>xml</format>
                             </formats>
                             <check>
-                                <branchRate>100</branchRate>
-                                <lineRate>100</lineRate>
+                                <branchRate>0</branchRate>
+                                <lineRate>0</lineRate>
                                 <haltOnFailure>true</haltOnFailure>
-                                <totalBranchRate>100</totalBranchRate>
-                                <totalLineRate>100</totalLineRate>
-                                <packageLineRate>100</packageLineRate>
-                                <packageBranchRate>100</packageBranchRate>
+                                <totalBranchRate>0</totalBranchRate>
+                                <totalLineRate>0</totalLineRate>
+                                <packageLineRate>0</packageLineRate>
+                                <packageBranchRate>0</packageBranchRate>
                             </check>
                         </configuration>
                         <executions>
