@@ -9,6 +9,7 @@ function getStatistics() {
         $("#dailyEarnings").text(response.earnings);
         $("#arrivals").text(response.arrivals);
         $("#departures").text(response.departures);
+        $("#forecast").text(response.forecast);
     });
 
     $.get("stats-month", response => {

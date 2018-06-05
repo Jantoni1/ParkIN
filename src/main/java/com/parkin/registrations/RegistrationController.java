@@ -109,9 +109,19 @@ public class RegistrationController {
             Tariff tariff = tariffOptional.orElse(new Tariff());
             earnings = earnings.add(calculatePrice(registration, tariff, registration.getDeparture()));
         }
+
+        List<Registration> forecasted = registrationRepository.findAllByArrivalGreaterThanAndDepartureIsNull(time);
+        BigDecimal forecast = new BigDecimal(0);
+        for(Registration registration: forecasted) {
+            Optional<Tariff> tariffOptional = tariffCrudRepository.findOne(registration.getTariffId());
+            Tariff tariff = tariffOptional.orElse(new Tariff());
+            forecast = forecast.add(calculatePrice(registration, tariff, LocalDateTime.now()));
+        }
+
         return ImmutableMap.of("earnings", earnings.toString()
-            , "arrivals", Integer.toString(arrivals.size())
-            , "departures", Integer.toString(departures.size()));
+                , "arrivals", Integer.toString(arrivals.size())
+                , "departures", Integer.toString(departures.size())
+                , "forecast", forecast.toString());
     }
 
     @GetMapping("/stats-month")
