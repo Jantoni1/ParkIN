@@ -124,7 +124,7 @@
 
                             <authConfig>
                                 <username>jantoni1</username>
-                                <password>ELKA2137</password>
+                                <password>${env.DOCKER_PASSWORD}</password>
                             </authConfig>
 
                         </configuration>
