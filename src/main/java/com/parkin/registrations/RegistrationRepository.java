@@ -27,6 +27,8 @@ public interface RegistrationRepository extends Repository<Registration, Long> {
 
     List<Registration> findAllByDepartureBetween(LocalDateTime begin, LocalDateTime end);
 
+    List<Registration> findAllByArrivalGreaterThanAndDepartureIsNull(LocalDateTime begin);
+
     @Transactional
     void deleteAllByDepartureIsNull();
 }
